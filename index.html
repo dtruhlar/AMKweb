@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TRABANT klub Plzeň – nadšenci do trabantů od roku 1990">
+<title>Trabant klub Plzeň</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A18;
+    --red: #C8252A;
+    --red-light: #E8353B;
+    --amber: #E8A020;
+    --gray: #6B6B60;
+    --gray-light: #E8E4DC;
+    --white: #FDFAF5;
+    --shadow: 0 4px 24px rgba(26,26,24,0.12);
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--red);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--red);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    color: white;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    color: white;
+    letter-spacing: 2px;
+    line-height: 1.1;
+  }
+
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    font-weight: 500;
+  }
+
+  /* Desktop nav */
+  nav { display: flex; gap: 4px; }
+
+  nav a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  nav a:hover, nav a.active {
+    color: white;
+    background: rgba(255,255,255,0.1);
+  }
+
+  nav a.nav-cta {
+    background: var(--red);
+    color: white;
+    margin-left: 6px;
+  }
+
+  nav a.nav-cta:hover { background: var(--red-light); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    background: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--dark);
+    z-index: 200;
+    flex-direction: column;
+    padding: 80px 32px 40px;
+    gap: 8px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 32px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .mobile-menu a {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--amber); }
+  .mobile-menu a.mob-cta { color: var(--red); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    color: white;
+    padding: 60px 20px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: 'T';
+    font-family: 'Bebas Neue', cursive;
+    font-size: 500px;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    right: -60px;
+    top: -100px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(52px, 10vw, 96px);
+    letter-spacing: 4px;
+    line-height: 0.95;
+    margin-bottom: 24px;
+    animation: fadeDown 0.6s 0.1s ease both;
+  }
+
+  .hero h1 span { color: var(--amber); }
+
+  .hero-desc {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: #bbb;
+    max-width: 560px;
+    margin-bottom: 36px;
+    animation: fadeDown 0.6s 0.2s ease both;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    animation: fadeDown 0.6s 0.3s ease both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--red);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--red-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,37,42,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+
+  .btn-outline:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ── OPENING HOURS BANNER ── */
+  .hours-banner {
+    background: var(--amber);
+    padding: 14px 20px;
+  }
+
+  .hours-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hours-label {
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+
+  .hours-grid {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .hours-item {
+    background: rgba(26,26,24,0.12);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    white-space: nowrap;
+  }
+
+  .hours-item span {
+    font-weight: 400;
+    opacity: 0.75;
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+
+  /* Section headings */
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(36px, 5vw, 52px);
+    letter-spacing: 2px;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  /* ── NEWS GRID ── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .news-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(26,26,24,0.16);
+  }
+
+  .news-card-header {
+    background: var(--dark);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .news-card-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--red);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .news-card-date {
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .news-card-body {
+    padding: 20px;
+    flex: 1;
+  }
+
+  .news-card-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .news-card-text {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .news-card-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 20px;
+    background: var(--gray-light);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border-top: 1px solid #e8e4dc;
+    transition: background 0.2s;
+  }
+
+  .news-card-link:hover { background: var(--amber); }
+
+  /* Newsletter highlight card */
+  .news-card.highlight .news-card-header { background: var(--red); }
+  .news-card.highlight .news-card-link { background: var(--dark); color: white; }
+  .news-card.highlight .news-card-link:hover { background: #333; }
+
+  /* ── INFO BLOCKS ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .info-block {
+    background: white;
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--red);
+    transition: transform 0.2s;
+  }
+
+  .info-block:hover { transform: translateY(-3px); }
+
+  .info-block-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .info-block-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .info-block-text {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .info-block-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    color: var(--red);
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .info-block-link:hover { text-decoration: underline; }
+
+  /* ── ZPRAVODAJ CTA ── */
+  .zpravodaj-cta {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 40px 36px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+  }
+
+  .zpravodaj-icon {
+    font-size: 64px;
+    flex-shrink: 0;
+  }
+
+  .zpravodaj-body { flex: 1; min-width: 200px; }
+
+  .zpravodaj-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: white;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .zpravodaj-title span { color: var(--amber); }
+
+  .zpravodaj-text {
+    color: #aaa;
+    font-size: 15px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: white;
+    padding: 48px 20px 24px;
+    margin-top: 0;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 32px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+
+  .footer-brand-text {
+    color: #888;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 320px;
+  }
+
+  .footer-col-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--amber);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .footer-col a, .footer-col p {
+    display: block;
+    color: #999;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 4px 0;
+    transition: color 0.2s;
+    line-height: 1.6;
+  }
+
+  .footer-col a:hover { color: white; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 12px;
+  }
+
+  .footer-bottom p {
+    color: #666;
+    font-size: 13px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hamburger { display: flex; }
+
+    .hero { padding: 48px 20px 56px; }
+    .hero::before { font-size: 280px; right: -30px; top: -40px; }
+    .hero h1 { font-size: 56px; }
+
+    .hours-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .zpravodaj-cta {
+      padding: 28px 24px;
+      gap: 20px;
+    }
+
+    .zpravodaj-icon { font-size: 48px; }
+    .zpravodaj-title { font-size: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { text-align: center; justify-content: center; }
+    .btn { padding: 15px 24px; font-size: 16px; }
+  }
+
+  /* ── SCROLL TO TOP ── */
+  #scrollTop {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(200,37,42,0.4);
+    transition: transform 0.2s;
+    z-index: 50;
+  }
+
+  #scrollTop:hover { transform: translateY(-3px); }
+  #scrollTop.visible { display: flex; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">TK</div>
+      <div class="logo-text">
+        Trabant klub
+        <span class="logo-sub">Plzeň · od 1990</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#aktuality" class="active">Aktuality</a>
+      <a href="#oteviraci-doba">Otevírací doba</a>
+      <a href="#akce">Akce a výlety</a>
+      <a href="#fotogalerie">Fotogalerie</a>
+      <a href="#forum">Fórum</a>
+      <a href="#kontakt" class="nav-cta">Kontakt</a>
+    </nav>
+    <button class="hamburger" onclick="openMenu()" aria-label="Otevřít menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()">×</button>
+  <a href="#aktuality" onclick="closeMenu()">Aktuality</a>
+  <a href="#oteviraci-doba" onclick="closeMenu()">Otevírací doba</a>
+  <a href="#akce" onclick="closeMenu()">Akce a výlety</a>
+  <a href="#fotogalerie" onclick="closeMenu()">Fotogalerie</a>
+  <a href="#forum" onclick="closeMenu()">Fórum</a>
+  <a href="#kontakt" class="mob-cta" onclick="closeMenu()">Kontakt</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🏁 Trabantklub Plzeň</div>
+    <h1>Prdíme<br><span>společně</span><br>od roku 1990</h1>
+    <p class="hero-desc">Jsme nadšenci do trabantů z Plzně a okolí. Pravidelné srazy, výlety, opravna, kamarádství — to jsme my.</p>
+    <div class="hero-actions">
+      <a href="#aktuality" class="btn btn-primary">📰 Co je nového</a>
+      <a href="#kontakt" class="btn btn-outline">📞 Kontaktujte nás</a>
+    </div>
+  </div>
+</section>
+
+<!-- OPENING HOURS BANNER -->
+<div class="hours-banner" id="oteviraci-doba">
+  <div class="hours-inner">
+    <div class="hours-label">⏰ Nová otevírací doba od 1. 3. 2026</div>
+    <div class="hours-grid">
+      <div class="hours-item">PO <span>12–16 hod</span></div>
+      <div class="hours-item">ÚT <span>12–16 hod</span></div>
+      <div class="hours-item">ST <span>9–12 · 13–16 hod</span></div>
+      <div class="hours-item">ČT <span>9–13 hod</span></div>
+      <div class="hours-item">PÁ–NE <span>zavřeno</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- AKTUALITY -->
+  <section id="aktuality">
+    <div class="section-header reveal">
+      <div class="section-tag">Novinky</div>
+      <div class="section-title">Aktuality</div>
+    </div>
+
+    <div class="news-grid">
+
+      <div class="news-card highlight reveal">
+        <div class="news-card-header">
+          <div class="news-card-icon">📋</div>
+          <div class="news-card-date">2026 · Zpravodaj</div>
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-title">Zpravodaj 1/2026 je tady!</div>
+          <p class="news-card-text">Aktuální číslo klubového zpravodaje si můžete stáhnout zdarma. Najdete tam novinky, výsledky akcí i tipy na opravy.</p>
+        </div>
+        <a href="https://drive.google.com/file/d/11vZjb55RIudMCnPz6m1ji_4cfNfA27dz/view?usp=drive_link" target="_blank" class="news-card-link">
+          📄 Stáhnout zpravodaj →
+        </a>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-card-header">
+          <div class="news-card-icon">🕐</div>
+          <div class="news-card-date">Od 1. 3. 2026</div>
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-title">Nová otevírací doba</div>
+          <p class="news-card-text">Od března 2026 máme upravenou otevírací dobu. PO a ÚT: 12–16, ST: 9–12 a 13–16, ČT: 9–13. Těšíme se na vás!</p>
+        </div>
+        <a href="#oteviraci-doba" class="news-card-link">
+          Zobrazit celý přehled →
+        </a>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-card-header">
+          <div class="news-card-icon">🗓️</div>
+          <div class="news-card-date">Kalendář akcí</div>
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-title">Výlety & Srazy 2026</div>
+          <p class="news-card-text">Chystáme bohatý program na letošní sezónu. Sledujte náš kalendář akcí a nenechte si ujít srazy a výlety s přáteli trabantisty.</p>
+        </div>
+        <a href="#akce" class="news-card-link">
+          Prohlédnout kalendář →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Zpravodaj CTA -->
+    <div class="zpravodaj-cta reveal">
+      <div class="zpravodaj-icon">📰</div>
+      <div class="zpravodaj-body">
+        <div class="zpravodaj-title">Zpravodaj <span>1/2026</span></div>
+        <p class="zpravodaj-text">Novinky z klubu, reportáže ze srazů, tipy na opravy a dílenské rady přímo pro vás.</p>
+      </div>
+      <a href="https://drive.google.com/file/d/11vZjb55RIudMCnPz6m1ji_4cfNfA27dz/view?usp=drive_link" target="_blank" class="btn btn-primary">
+        ⬇️ Stáhnout PDF
+      </a>
+    </div>
+
+  </section>
+
+  <!-- INFO BLOCKS -->
+  <section id="akce">
+    <div class="section-header reveal">
+      <div class="section-tag">Vše na jednom místě</div>
+      <div class="section-title">Co u nás najdete</div>
+    </div>
+    <div class="info-grid">
+
+      <div class="info-block reveal">
+        <div class="info-block-icon">🚗</div>
+        <div class="info-block-title">O nás</div>
+        <p class="info-block-text">Jsme spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme kamarádství, sdílíme zkušenosti, opravujeme a jezdíme!</p>
+        <a href="#" class="info-block-link">Více o klubu →</a>
+      </div>
+
+      <div class="info-block reveal">
+        <div class="info-block-icon">🗺️</div>
+        <div class="info-block-title">Výlety & Srazy</div>
+        <p class="info-block-text">Celosezonní kalendář srazů, výletů a akcí. Přidejte se k nám na silnici!</p>
+        <a href="#" class="info-block-link">Kalendář akcí →</a>
+      </div>
+
+      <div class="info-block reveal">
+        <div class="info-block-icon">📸</div>
+        <div class="info-block-title">Fotogalerie</div>
+        <p class="info-block-text">Stovky fotek ze srazů, výletů a opravování. Podívejte se, co se u nás děje!</p>
+        <a href="http://trabantakce.rajce.idnes.cz" target="_blank" class="info-block-link">Otevřít galerii →</a>
+      </div>
+
+      <div class="info-block reveal">
+        <div class="info-block-icon">💬</div>
+        <div class="info-block-title">Diskuzní fórum</div>
+        <p class="info-block-text">Ptejte se, raďte si, sdílejte zkušenosti s opravami i cestami na našem fóru.</p>
+        <a href="#" class="info-block-link">Do fóra →</a>
+      </div>
+
+      <div class="info-block reveal">
+        <div class="info-block-icon">✏️</div>
+        <div class="info-block-title">Vaše příspěvky</div>
+        <p class="info-block-text">Napište nám svůj příběh, fotky nebo tip. Rádi zveřejníme vaše zážitky s Trabíkem.</p>
+        <a href="#" class="info-block-link">Přidat příspěvek →</a>
+      </div>
+
+      <div class="info-block reveal">
+        <div class="info-block-icon">🤝</div>
+        <div class="info-block-title">Naši přátelé</div>
+        <p class="info-block-text">Spolupracujeme s dalšími kluby a nadšenci. Poznáme i vás – přijďte na sraz!</p>
+        <a href="#" class="info-block-link">Přátelé klubu →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="section-header reveal">
+      <div class="section-tag">Napište nebo přijďte</div>
+      <div class="section-title">Kontakt</div>
+    </div>
+    <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+
+      <div class="info-block reveal" style="border-left-color: var(--amber);">
+        <div class="info-block-icon">📍</div>
+        <div class="info-block-title">Kde nás najdete</div>
+        <p class="info-block-text">Trabant klub Plzeň<br>Plzeňský kraj, Česká republika</p>
+      </div>
+
+      <div class="info-block reveal" style="border-left-color: var(--amber);">
+        <div class="info-block-icon">⏰</div>
+        <div class="info-block-title">Otevírací doba</div>
+        <p class="info-block-text">
+          <strong>PO, ÚT:</strong> 12–16 hod<br>
+          <strong>ST:</strong> 9–12 a 13–16 hod<br>
+          <strong>ČT:</strong> 9–13 hod<br>
+          <strong>PÁ–NE:</strong> zavřeno
+        </p>
+      </div>
+
+      <div class="info-block reveal" style="border-left-color: var(--amber);">
+        <div class="info-block-icon">✉️</div>
+        <div class="info-block-title">Napište nám</div>
+        <p class="info-block-text">Máte dotaz, zájem o členství nebo chcete přijet na sraz? Kontaktní formulář najdete na stránce Kontakty.</p>
+        <a href="#" class="info-block-link">Kontaktní formulář →</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-title">Trabant klub Plzeň</div>
+        <p class="footer-brand-text">Spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme přátelství, sdílíme znalosti a udržujeme legendu dvoutaktního motoru při životě od roku 1990.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Navigace</div>
+        <a href="#aktuality">Aktuality</a>
+        <a href="#oteviraci-doba">Otevírací doba</a>
+        <a href="#akce">Akce a výlety</a>
+        <a href="http://trabantakce.rajce.idnes.cz" target="_blank">Fotogalerie</a>
+        <a href="#forum">Diskuzní fórum</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Otevírací doba</div>
+        <p>PO · ÚT: 12–16 hod</p>
+        <p>ST: 9–12 · 13–16 hod</p>
+        <p>ČT: 9–13 hod</p>
+        <p>Pátek–Neděle: zavřeno</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Trabant klub Plzeň. Vyrobeno s láskou k prdlavkám.</p>
+      <p>trabantklub.cz</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nahoru">↑</button>
+
+<script>
+  // Mobile menu
+  function openMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Scroll to top button
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i % 4) * 0.1 + 's';
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth active nav link
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
