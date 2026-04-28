@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="TRABANT klub Plzeň – nadšenci do trabantů od roku 1990">
-<title>Trabant klub Plzeň</title>
+<title>AMK Trabant klub Plzeň</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -653,6 +653,94 @@
     .btn { padding: 15px 24px; font-size: 16px; }
   }
 
+  /* ── CALENDAR ── */
+  .calendar-section { margin-bottom: 64px; }
+
+  .month-group { margin-bottom: 28px; }
+
+  .month-label {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gray-light);
+  }
+
+  .event-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .event-item {
+    background: white;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--gray-light);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .event-item:hover {
+    border-left-color: var(--red);
+    transform: translateX(4px);
+  }
+
+  .event-item.highlight { border-left-color: var(--amber); }
+  .event-item.sraz { border-left-color: var(--red); }
+
+  .event-date {
+    background: var(--dark);
+    color: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 18px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 72px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .event-item.highlight .event-date { background: var(--amber); color: var(--dark); }
+  .event-item.sraz .event-date { background: var(--red); }
+
+  .event-body { flex: 1; }
+
+  .event-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.4;
+  }
+
+  .event-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    background: var(--gray-light);
+    color: var(--gray);
+  }
+
+  .event-badge.badge-sraz { background: rgba(200,37,42,0.1); color: var(--red); }
+  .event-badge.badge-schůze { background: rgba(232,160,32,0.15); color: #a06000; }
+  .event-badge.badge-výlet { background: rgba(60,130,60,0.1); color: #2a6a2a; }
+  .event-badge.badge-aice { background: rgba(60,80,180,0.1); color: #2040b0; }
+
+  @media (max-width: 480px) {
+    .event-item { flex-direction: column; gap: 10px; }
+    .event-date { align-self: flex-start; }
+  }
+
   /* ── SCROLL TO TOP ── */
   #scrollTop {
     position: fixed;
@@ -812,8 +900,207 @@
 
   </section>
 
+  <!-- KALENDÁŘ AKCÍ -->
+  <section id="akce" class="calendar-section">
+    <div class="section-header reveal">
+      <div class="section-tag">Výlety · Srazy · Schůze</div>
+      <div class="section-title">Kalendář akcí 2026</div>
+    </div>
+
+    <!-- LEGENDA -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;" class="reveal">
+      <span class="event-badge badge-sraz">🏁 Sraz / akce</span>
+      <span class="event-badge badge-schůze">📋 Členská schůze</span>
+      <span class="event-badge badge-výlet">🗺️ Výlet</span>
+      <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
+    </div>
+
+    <!-- KVĚTEN -->
+    <div class="month-group reveal">
+      <div class="month-label">🌸 Květen</div>
+      <div class="event-list">
+        <div class="event-item highlight">
+          <div class="event-date">1.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-výlet">🗺️ Výlet</span>
+            <div class="event-title">Den dobré nálady v Kryrech + výlet Kadaň</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">6.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-schůze">📋 Členská schůze</span>
+            <div class="event-title">Členská schůze — přednáška Ondřeje Weise: <em>Na motorce do Maroka a dále pouští ve stopách Dakarského závodu</em></div>
+          </div>
+        </div>
+        <div class="event-item sraz">
+          <div class="event-date">8.–10.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Trabi sraz Český Ráj</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">23.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Sraz historických vozidel v Červeném Újezdě</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">30.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Sraz soc. vozidel Hnačov, jízda HV Bolevec</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ČERVEN -->
+    <div class="month-group reveal">
+      <div class="month-label">☀️ Červen</div>
+      <div class="event-list">
+        <div class="event-item sraz">
+          <div class="event-date">5.–7.<br>ČERV</div>
+          <div class="event-body">
+            <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
+            <div class="event-title">Setkání A.I.C.E. — Dvoutakti na kolejích, Osek</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">20.<br>ČERV</div>
+          <div class="event-body">
+            <span class="event-badge badge-výlet">🗺️ Výlet</span>
+            <div class="event-title">Klubový výlet — zaniklá obec Umíř, letiště Plachtín</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">27.<br>ČERV</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">Jízda hraběte Lobkowitze v Křimicích</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ČERVENEC -->
+    <div class="month-group reveal">
+      <div class="month-label">🌻 Červenec</div>
+      <div class="event-list">
+        <div class="event-item sraz">
+          <div class="event-date">3.–5.<br>ČVNC</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Sraz Morava — Plumlov</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">11.<br>ČVNC</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Setkání</span>
+            <div class="event-title">Setkání youngtimers v Černošíně</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">25.<br>ČVNC</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">66. mil Šumavských — Kašperské Hory</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SRPEN -->
+    <div class="month-group reveal">
+      <div class="month-label">🏖️ Srpen</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">8.<br>SRPEN</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">11. Retrojízda — aneb čím jsme za socialismu jezdili</div>
+          </div>
+        </div>
+        <div class="event-item sraz">
+          <div class="event-date">28.–29.<br>SRPEN</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Trabi sraz Vrbno u Blatné + v sobotu sraz v Chotíkově</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZÁŘÍ -->
+    <div class="month-group reveal">
+      <div class="month-label">🍂 Září</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">2.<br>ZÁŘÍ</div>
+          <div class="event-body">
+            <span class="event-badge badge-schůze">📋 Členská schůze</span>
+            <div class="event-title">Členská schůze</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">13.<br>ZÁŘÍ</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">Retrogarážovky ve Štáhlavech</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">19.<br>ZÁŘÍ</div>
+          <div class="event-body">
+            <span class="event-badge badge-výlet">🗺️ Výlet</span>
+            <div class="event-title">Klubový výlet — zemědělské muzeum Halže, skanzen Bernau</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ŘÍJEN – PROSINEC -->
+    <div class="month-group reveal">
+      <div class="month-label">🍁 Říjen · Listopad · Prosinec</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">17.<br>ŘÍJEN</div>
+          <div class="event-body">
+            <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
+            <div class="event-title">Výlet A.I.C.E. do muzea techniky v Sokolově</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">4.<br>LISTOP</div>
+          <div class="event-body">
+            <span class="event-badge badge-schůze">📋 Členská schůze</span>
+            <div class="event-title">Členská schůze</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">17.<br>LISTOP</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Jízda</span>
+            <div class="event-title">Sváteční vyjížďka</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">12.<br>PROSIN</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🎄 Jízda</span>
+            <div class="event-title">Adventní jízda</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
   <!-- INFO BLOCKS -->
-  <section id="akce">
+  <section id="o-nas">
     <div class="section-header reveal">
       <div class="section-tag">Vše na jednom místě</div>
       <div class="section-title">Co u nás najdete</div>
@@ -825,13 +1112,6 @@
         <div class="info-block-title">O nás</div>
         <p class="info-block-text">Jsme spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme kamarádství, sdílíme zkušenosti, opravujeme a jezdíme!</p>
         <a href="#" class="info-block-link">Více o klubu →</a>
-      </div>
-
-      <div class="info-block reveal">
-        <div class="info-block-icon">🗺️</div>
-        <div class="info-block-title">Výlety & Srazy</div>
-        <p class="info-block-text">Celosezonní kalendář srazů, výletů a akcí. Přidejte se k nám na silnici!</p>
-        <a href="#" class="info-block-link">Kalendář akcí →</a>
       </div>
 
       <div class="info-block reveal">
