@@ -500,6 +500,39 @@
 
   .info-block-link:hover { text-decoration: underline; }
 
+  /* Speciální úprava pro sekci Přátelé */
+  .friends-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .friend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 6px 10px;
+    background: var(--gray-light);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .friend-item:hover {
+    background: var(--amber);
+    transform: translateX(4px);
+  }
+  .friend-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .friend-url {
+    font-size: 11px;
+    color: var(--gray);
+    display: block;
+  }
+
   /* ── ZPRAVODAJ CTA ── */
   .zpravodaj-cta {
     background: var(--dark);
@@ -1140,15 +1173,45 @@
       <div class="info-block reveal">
         <div class="info-block-icon">🤝</div>
         <div class="info-block-title">Naši přátelé</div>
-        <p class="info-block-text" style="font-size: 13px; line-height: 1.4;">
-            • <a href="http://www.muzeumlobzy.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Muzeum Příběhy dvoutaktů</a><br>
-            • <a href="http://www.trabantmuzeum.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Trabant Muzeum Motol</a><br>
-            • <a href="http://www.muzeumtrabantu.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Muzeum N. Ves pod Pleší</a><br>
-            • <a href="http://www.krtekracingteam.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Krtek Racing Team</a><br>
-            • <a href="http://www.trabantem.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Půjčovna Trabantů</a><br>
-            • <a href="http://www.trabantshop.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Trabant shop V. Kytka</a>
-        </p>
-        <a href="https://www.trabantklub.cz/index.php?option=com_content&view=category&id=46&Itemid=81" target="_blank" class="info-block-link">Všechny odkazy →</a>
+        
+        <div class="friends-list">
+            <a href="http://www.muzeumlobzy.cz" class="friend-item" target="_blank">
+                <div class="friend-body">
+                    <span class="friend-name">Příběhy dvoutaktů</span>
+                    <span class="friend-url">muzeumlobzy.cz</span>
+                </div>
+            </a>
+            <a href="http://www.trabantmuzeum.cz" class="friend-item" target="_blank">
+                <div class="friend-body">
+                    <span class="friend-name">Trabant Muzeum Motol</span>
+                    <span class="friend-url">trabantmuzeum.cz</span>
+                </div>
+            </a>
+            <a href="http://www.muzeumtrabantu.cz" class="friend-item" target="_blank">
+                <div class="friend-body">
+                    <span class="friend-name">Muzeum N. Ves pod Pleší</span>
+                    <span class="friend-url">muzeumtrabantu.cz</span>
+                </div>
+            </a>
+            <a href="http://www.krtekracingteam.cz" class="friend-item" target="_blank">
+                <div class="friend-body">
+                    <span class="friend-name">Krtek Racing Team</span>
+                    <span class="friend-url">krtekracingteam.cz</span>
+                </div>
+            </a>
+            <a href="http://www.trabantem.cz" class="friend-item" target="_blank">
+                <div class="friend-body">
+                    <span class="friend-name">Půjčovna Trabantů</span>
+                    <span class="friend-url">trabantem.cz</span>
+                </div>
+            </a>
+            <a href="http://www.trabantshop.cz" class="friend-item" target="_blank">
+                <div class="friend-body">
+                    <span class="friend-name">Trabant shop V. Kytka</span>
+                    <span class="friend-url">trabantshop.cz</span>
+                </div>
+            </a>
+        </div>
       </div>
 
     </div>
@@ -1316,8 +1379,8 @@
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nahoru">↑</button>
 
 <script>
-  // NASTAVENÍ GOOGLE SHEETS
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyhX3pHDz2zt_RLG4HjjDDQorSga0x-GfP-ibMDMYlmNmxNmYBFzE0V5lHSXPLoohQLHQ/exec'; // <--- DOPLNIT!
+  // NASTAVENÍ GOOGLE SHEETS - POUŽITA VAŠE AKTIVNÍ URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyhX3pHDz2zt_RLG4HjjDDQorSga0x-GfP-ibMDMYlmNmxNmYBFzE0V5lHSXPLoohQLHQ/exec';
 
   // Načítání kalendáře
   async function loadCalendar() {
