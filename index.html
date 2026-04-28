@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="TRABANT klub Plzeň – nadšenci do trabantů od roku 1990">
-<title>AMK Trabant klub Plzeň</title>
+<title>AMK | Trabant klub Plzeň</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -741,6 +741,169 @@
     .event-date { align-self: flex-start; }
   }
 
+  /* ── CONTACT ── */
+  .contact-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .contact-main-left {
+    background: var(--dark);
+    border-radius: var(--radius);
+    padding: 32px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-org {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .contact-address {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    color: #ccc;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .contact-address span { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .contact-row span { font-size: 18px; flex-shrink: 0; }
+
+  .contact-row a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .contact-row a:hover { color: var(--amber); }
+
+  .contact-main-right {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+  }
+
+  .contact-hours-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .contact-hours-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .contact-hours-table tr {
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .contact-hours-table td {
+    padding: 10px 4px;
+    font-size: 15px;
+    vertical-align: top;
+  }
+
+  .contact-hours-table td:first-child {
+    font-weight: 600;
+    color: var(--dark);
+    white-space: nowrap;
+    padding-right: 20px;
+    width: 40%;
+  }
+
+  .contact-hours-table td:last-child { color: var(--gray); }
+
+  .contact-hours-table tr.closed td { color: #bbb; font-style: italic; }
+  .contact-hours-table tr.closed td:first-child { font-weight: 400; }
+
+  /* Mechanic cards */
+  .mechanic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .mechanic-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border-left: 4px solid var(--red);
+    transition: transform 0.2s;
+  }
+
+  .mechanic-card:hover { transform: translateY(-3px); }
+  .mechanic-card.mechanic-note { border-left-color: var(--amber); }
+
+  .mechanic-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .mechanic-name {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .mechanic-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .mechanic-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--dark);
+    color: white;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .mechanic-phone:hover { background: var(--red); }
+
+  @media (max-width: 768px) {
+    .contact-main { grid-template-columns: 1fr; }
+  }
+
   /* ── SCROLL TO TOP ── */
   #scrollTop {
     position: fixed;
@@ -819,13 +982,12 @@
 <!-- OPENING HOURS BANNER -->
 <div class="hours-banner" id="oteviraci-doba">
   <div class="hours-inner">
-    <div class="hours-label">⏰ Nová otevírací doba od 1. 3. 2026</div>
+    <div class="hours-label">⏰ Kancelář &amp; prodejna ND — provozní doba</div>
     <div class="hours-grid">
-      <div class="hours-item">PO <span>12–16 hod</span></div>
-      <div class="hours-item">ÚT <span>12–16 hod</span></div>
-      <div class="hours-item">ST <span>9–12 · 13–16 hod</span></div>
+      <div class="hours-item">ÚT <span>13–18 hod</span></div>
+      <div class="hours-item">ST <span>9–12 · 13–18 hod</span></div>
       <div class="hours-item">ČT <span>9–13 hod</span></div>
-      <div class="hours-item">PÁ–NE <span>zavřeno</span></div>
+      <div class="hours-item">PO · PÁ–NE <span>zavřeno</span></div>
     </div>
   </div>
 </div>
@@ -859,14 +1021,14 @@
       <div class="news-card reveal">
         <div class="news-card-header">
           <div class="news-card-icon">🕐</div>
-          <div class="news-card-date">Od 1. 3. 2026</div>
+          <div class="news-card-date">Kancelář &amp; prodejna ND</div>
         </div>
         <div class="news-card-body">
-          <div class="news-card-title">Nová otevírací doba</div>
-          <p class="news-card-text">Od března 2026 máme upravenou otevírací dobu. PO a ÚT: 12–16, ST: 9–12 a 13–16, ČT: 9–13. Těšíme se na vás!</p>
+          <div class="news-card-title">Provozní doba</div>
+          <p class="news-card-text">Út: 13–18 hod &nbsp;·&nbsp; St: 9–12 a 13–18 hod &nbsp;·&nbsp; Čt: 9–13 hod. Pondělí a pátek–neděle zavřeno.</p>
         </div>
-        <a href="#oteviraci-doba" class="news-card-link">
-          Zobrazit celý přehled →
+        <a href="#kontakt" class="news-card-link">
+          Více v kontaktech →
         </a>
       </div>
 
@@ -1148,36 +1310,99 @@
   <!-- KONTAKT -->
   <section id="kontakt">
     <div class="section-header reveal">
-      <div class="section-tag">Napište nebo přijďte</div>
+      <div class="section-tag">Přijďte, zavolejte nebo napište</div>
       <div class="section-title">Kontakt</div>
     </div>
-    <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
 
-      <div class="info-block reveal" style="border-left-color: var(--amber);">
-        <div class="info-block-icon">📍</div>
-        <div class="info-block-title">Kde nás najdete</div>
-        <p class="info-block-text">Trabant klub Plzeň<br>Plzeňský kraj, Česká republika</p>
+    <!-- Hlavní kontaktní karta -->
+    <div class="contact-main reveal">
+      <div class="contact-main-left">
+        <div class="contact-org">AMK Trabant Plzeň z.s.</div>
+        <div class="contact-address">
+          <span>📍</span>
+          <div>
+            Úslavská 339/2<br>
+            326 00 Plzeň<br>
+            Česká republika
+          </div>
+        </div>
+        <div class="contact-row">
+          <span>📞</span>
+          <a href="tel:+420377323689">377 323 689</a>
+        </div>
+        <div class="contact-row">
+          <span>✉️</span>
+          <a href="mailto:amk@trabantklub.cz">amk@trabantklub.cz</a>
+        </div>
+        <div class="contact-row">
+          <span>🌐</span>
+          <a href="https://www.trabantklub.cz" target="_blank">www.trabantklub.cz</a>
+        </div>
+        <div class="contact-row">
+          <span>🏛️</span>
+          <div>
+            <div style="font-size:13px;color:var(--gray);margin-bottom:2px;">IČO</div>
+            <strong style="color:white;">601355887</strong>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span>📬</span>
+          <div>
+            <div style="font-size:13px;color:var(--gray);margin-bottom:2px;">ID datové schránky</div>
+            <strong style="color:white;">pkzw25s</strong>
+          </div>
+        </div>
       </div>
 
-      <div class="info-block reveal" style="border-left-color: var(--amber);">
-        <div class="info-block-icon">⏰</div>
-        <div class="info-block-title">Otevírací doba</div>
-        <p class="info-block-text">
-          <strong>PO, ÚT:</strong> 12–16 hod<br>
-          <strong>ST:</strong> 9–12 a 13–16 hod<br>
-          <strong>ČT:</strong> 9–13 hod<br>
-          <strong>PÁ–NE:</strong> zavřeno
-        </p>
+      <div class="contact-main-right">
+        <div class="contact-hours-block">
+          <div class="contact-hours-title">🏢 Kancelář &amp; prodejna náhradních dílů</div>
+          <table class="contact-hours-table">
+            <tr><td>Úterý</td><td>13:00 – 18:00</td></tr>
+            <tr><td>Středa</td><td>9:00 – 12:00 &nbsp;·&nbsp; 13:00 – 18:00</td></tr>
+            <tr><td>Čtvrtek</td><td>9:00 – 13:00</td></tr>
+            <tr class="closed"><td>Pondělí, Pátek – Neděle</td><td>zavřeno</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Servisní kontakty -->
+    <div class="section-header reveal" style="margin-top:48px;">
+      <div class="section-tag">Opravy &amp; servis</div>
+      <div class="section-title">Mechanici</div>
+    </div>
+
+    <div class="mechanic-grid reveal">
+
+      <div class="mechanic-card">
+        <div class="mechanic-icon">🔧</div>
+        <div class="mechanic-body">
+          <div class="mechanic-name">Pan Vachtl</div>
+          <div class="mechanic-desc">Servisní poradenství a informace k opravám</div>
+          <a href="tel:+420601355887" class="mechanic-phone">📞 601 355 887</a>
+        </div>
       </div>
 
-      <div class="info-block reveal" style="border-left-color: var(--amber);">
-        <div class="info-block-icon">✉️</div>
-        <div class="info-block-title">Napište nám</div>
-        <p class="info-block-text">Máte dotaz, zájem o členství nebo chcete přijet na sraz? Kontaktní formulář najdete na stránce Kontakty.</p>
-        <a href="#" class="info-block-link">Kontaktní formulář →</a>
+      <div class="mechanic-card">
+        <div class="mechanic-icon">🏗️</div>
+        <div class="mechanic-body">
+          <div class="mechanic-name">Pan Fryček</div>
+          <div class="mechanic-desc">Dílna trabantklubu — Úslavská 2, Plzeň</div>
+          <a href="tel:+420792303927" class="mechanic-phone">📞 792 303 927</a>
+        </div>
+      </div>
+
+      <div class="mechanic-card mechanic-note">
+        <div class="mechanic-icon">🚗</div>
+        <div class="mechanic-body">
+          <div class="mechanic-name">Dílna Kostelec u Nadryb</div>
+          <div class="mechanic-desc">Opravy v Kostelci u Nadryb s možností vyzvednutí vozidla přímo v Plzni.</div>
+        </div>
       </div>
 
     </div>
+
   </section>
 
 </main>
@@ -1187,28 +1412,33 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-title">Trabant klub Plzeň</div>
+        <div class="footer-brand-title">AMK Trabant Plzeň z.s.</div>
         <p class="footer-brand-text">Spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme přátelství, sdílíme znalosti a udržujeme legendu dvoutaktního motoru při životě od roku 1990.</p>
+        <p class="footer-brand-text" style="margin-top:10px;">
+          📍 Úslavská 339/2, 326 00 Plzeň<br>
+          📞 <a href="tel:+420377323689" style="color:#888;">377 323 689</a><br>
+          ✉️ <a href="mailto:amk@trabantklub.cz" style="color:#888;">amk@trabantklub.cz</a><br>
+          📬 Datová schránka: pkzw25s
+        </p>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Navigace</div>
         <a href="#aktuality">Aktuality</a>
-        <a href="#oteviraci-doba">Otevírací doba</a>
-        <a href="#akce">Akce a výlety</a>
+        <a href="#akce">Kalendář akcí</a>
         <a href="http://trabantakce.rajce.idnes.cz" target="_blank">Fotogalerie</a>
         <a href="#forum">Diskuzní fórum</a>
+        <a href="#kontakt">Kontakt</a>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">Otevírací doba</div>
-        <p>PO · ÚT: 12–16 hod</p>
-        <p>ST: 9–12 · 13–16 hod</p>
-        <p>ČT: 9–13 hod</p>
-        <p>Pátek–Neděle: zavřeno</p>
+        <div class="footer-col-title">Kancelář &amp; ND</div>
+        <p>Út: 13:00 – 18:00</p>
+        <p>St: 9–12 · 13–18 hod</p>
+        <p>Čt: 9:00 – 13:00</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Trabant klub Plzeň. Vyrobeno s láskou k prdlavkám.</p>
-      <p>trabantklub.cz</p>
+      <p>© 2026 AMK Trabant Plzeň z.s. — IČO: 601355887 · Vyrobeno s láskou k prdlavkám 🚗</p>
+      <p><a href="https://www.trabantklub.cz" style="color:#666;">trabantklub.cz</a></p>
     </div>
   </div>
 </footer>
