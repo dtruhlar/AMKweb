@@ -9,14 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #F5F0E8;
-    --dark: #1A1A18;
-    --red: #C8252A;
-    --red-light: #E8353B;
-    --amber: #E8A020;
-    --gray: #6B6B60;
-    --gray-light: #E8E4DC;
-    --white: #FDFAF5;
+    --cream: #F5F0E8; /* Z béžového kvadrantu */
+    --logo-blue: #2040b0; /* Z modrého prstence */
+    --logo-red: #C8252A; /* Z červeného kvadrantu */
+    --red: var(--logo-red);
+    --red-light: #E8353B; /* Zachovat pro vznášení, ale z loga-červené */
+    --logo-yellow: #E8A020; /* Ze žlutého kvadrantu */
+    --amber: var(--logo-yellow);
+    --logo-green: #2a6a2a; /* Ze zeleného kvadrantu */
+    --gray: #6B6B60; /* Z šedého textu a grafiky */
+    --gray-light: #E8E4DC; /* Zachovat */
+    --white: #FDFAF5; /* Zachovat */
     --shadow: 0 4px 24px rgba(26,26,24,0.12);
     --radius: 12px;
   }
@@ -35,7 +38,7 @@
 
   /* ── HEADER ── */
   header {
-    background: var(--dark);
+    background: var(--logo-blue); /* Z loga */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -59,21 +62,8 @@
     text-decoration: none;
   }
 
-  .logo-icon {
-    width: 42px;
-    height: 42px;
-    background: var(--red);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 22px;
-    color: white;
-    letter-spacing: 1px;
-    flex-shrink: 0;
-  }
-
+  /* Původní ikonový a textový kód loga byl odstraněn a nahrazen obrázkem loga */
+  
   .logo-text {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
@@ -85,7 +75,7 @@
   .logo-sub {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
-    color: var(--amber);
+    color: var(--logo-yellow); /* Změněno na barvu ze žlutého kvadrantu */
     letter-spacing: 3px;
     text-transform: uppercase;
     display: block;
@@ -144,7 +134,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     z-index: 200;
     flex-direction: column;
     padding: 80px 32px 40px;
@@ -176,12 +166,12 @@
     transition: color 0.2s;
   }
 
-  .mobile-menu a:hover { color: var(--amber); }
+  .mobile-menu a:hover { color: var(--logo-yellow); } /* Změněno na barvu ze žlutého kvadrantu */
   .mobile-menu a.mob-cta { color: var(--red); }
 
   /* ── HERO ── */
   .hero {
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     color: white;
     padding: 60px 20px 70px;
     position: relative;
@@ -229,7 +219,7 @@
     animation: fadeDown 0.6s 0.1s ease both;
   }
 
-  .hero h1 span { color: var(--amber); }
+  .hero h1 span { color: var(--logo-yellow); } /* Změněno na barvu ze žlutého kvadrantu */
 
   .hero-desc {
     font-size: clamp(16px, 2.5vw, 20px);
@@ -285,7 +275,7 @@
 
   /* ── OPENING HOURS BANNER ── */
   .hours-banner {
-    background: var(--amber);
+    background: var(--logo-yellow); /* Změněno na barvu ze žlutého kvadrantu */
     padding: 14px 20px;
   }
 
@@ -303,7 +293,7 @@
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--dark);
+    color: var(--logo-blue); /* Změněno na modrou z loga */
     flex-shrink: 0;
   }
 
@@ -319,7 +309,7 @@
     border-radius: 6px;
     font-size: 13px;
     font-weight: 600;
-    color: var(--dark);
+    color: var(--logo-blue); /* Změněno na modrou z loga */
     white-space: nowrap;
   }
 
@@ -381,7 +371,7 @@
   }
 
   .news-card-header {
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     padding: 20px;
     display: flex;
     align-items: center;
@@ -442,12 +432,12 @@
     transition: background 0.2s;
   }
 
-  .news-card-link:hover { background: var(--amber); }
+  .news-card-link:hover { background: var(--logo-yellow); } /* Změněno na barvu ze žlutého kvadrantu */
 
   /* Newsletter highlight card */
   .news-card.highlight .news-card-header { background: var(--red); }
-  .news-card.highlight .news-card-link { background: var(--dark); color: white; }
-  .news-card.highlight .news-card-link:hover { background: #333; }
+  .news-card.highlight .news-card-link { background: var(--logo-blue); color: white; } /* Změněno na modrou z loga */
+  .news-card.highlight .news-card-link:hover { background: var(--logo-gray); } /* Změněno na šedou z loga */
 
   /* ── INFO BLOCKS ── */
   .info-grid {
@@ -477,7 +467,7 @@
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
     letter-spacing: 1px;
-    color: var(--dark);
+    color: var(--logo-blue); /* Změněno na modrou z loga */
     margin-bottom: 6px;
   }
 
@@ -500,42 +490,9 @@
 
   .info-block-link:hover { text-decoration: underline; }
 
-  /* Speciální úprava pro sekci Přátelé */
-  .friends-list {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .friend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    padding: 6px 10px;
-    background: var(--gray-light);
-    border-radius: 8px;
-    transition: all 0.2s;
-  }
-  .friend-item:hover {
-    background: var(--amber);
-    transform: translateX(4px);
-  }
-  .friend-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--dark);
-    line-height: 1.2;
-  }
-  .friend-url {
-    font-size: 11px;
-    color: var(--gray);
-    display: block;
-  }
-
   /* ── ZPRAVODAJ CTA ── */
   .zpravodaj-cta {
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     border-radius: 16px;
     padding: 40px 36px;
     display: flex;
@@ -561,7 +518,7 @@
     margin-bottom: 8px;
   }
 
-  .zpravodaj-title span { color: var(--amber); }
+  .zpravodaj-title span { color: var(--logo-yellow); } /* Změněno na barvu ze žlutého kvadrantu */
 
   .zpravodaj-text {
     color: #aaa;
@@ -570,7 +527,7 @@
 
   /* ── FOOTER ── */
   footer {
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     color: white;
     padding: 48px 20px 24px;
     margin-top: 0;
@@ -606,7 +563,7 @@
     font-family: 'Bebas Neue', cursive;
     font-size: 18px;
     letter-spacing: 2px;
-    color: var(--amber);
+    color: var(--logo-yellow); /* Změněno na barvu ze žlutého kvadrantu */
     margin-bottom: 16px;
     text-transform: uppercase;
   }
@@ -721,11 +678,11 @@
     transform: translateX(4px);
   }
 
-  .event-item.highlight { border-left-color: var(--amber); }
+  .event-item.highlight { border-left-color: var(--logo-yellow); } /* Změněno na barvu ze žlutého kvadrantu */
   .event-item.sraz { border-left-color: var(--red); }
 
   .event-date {
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     color: white;
     border-radius: 8px;
     padding: 6px 12px;
@@ -739,7 +696,7 @@
     line-height: 1.2;
   }
 
-  .event-item.highlight .event-date { background: var(--amber); color: var(--dark); }
+  .event-item.highlight .event-date { background: var(--logo-yellow); color: var(--logo-blue); } /* Barvy ze žlutého a modrého kvadrantu */
   .event-item.sraz .event-date { background: var(--red); }
 
   .event-body { flex: 1; }
@@ -747,7 +704,7 @@
   .event-title {
     font-weight: 600;
     font-size: 15px;
-    color: var(--dark);
+    color: var(--logo-blue); /* Změněno na modrou z loga */
     line-height: 1.4;
   }
 
@@ -765,9 +722,12 @@
   }
 
   .event-badge.badge-sraz { background: rgba(200,37,42,0.1); color: var(--red); }
-  .event-badge.badge-schůze { background: rgba(232,160,32,0.15); color: #a06000; }
-  .event-badge.badge-výlet { background: rgba(60,130,60,0.1); color: #2a6a2a; }
-  .event-badge.badge-aice { background: rgba(60,80,180,0.1); color: #2040b0; }
+  .event-badge.badge-schůze { background: rgba(232,160,32,0.15); color: #a06000; } /* Změnit na žlutou */
+  .event-badge.badge-výlet { background: rgba(60,130,60,0.1); color: #2a6a2a; } /* Beze změny, již z loga */
+  .event-badge.badge-aice { background: rgba(60,80,180,0.1); color: #2040b0; } /* Již z loga, beze změny */
+  
+  .event-badge.badge-výlet { background: rgba(42, 106, 42, 0.1); color: var(--logo-green); } /* Hotovo */
+  .event-badge.badge-schůze { background: rgba(232,160,32,0.15); color: var(--logo-yellow); } /* Hotovo */
 
   @media (max-width: 480px) {
     .event-item { flex-direction: column; gap: 10px; }
@@ -783,7 +743,7 @@
   }
 
   .contact-main-left {
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     border-radius: var(--radius);
     padding: 32px;
     color: white;
@@ -796,7 +756,7 @@
     font-family: 'Bebas Neue', cursive;
     font-size: 28px;
     letter-spacing: 2px;
-    color: var(--amber);
+    color: var(--logo-yellow); /* Změněno na barvu ze žlutého kvadrantu */
     line-height: 1;
     margin-bottom: 4px;
   }
@@ -828,7 +788,7 @@
     transition: color 0.2s;
   }
 
-  .contact-row a:hover { color: var(--amber); }
+  .contact-row a:hover { color: var(--logo-yellow); } /* Změněno na barvu ze žlutého kvadrantu */
 
   .contact-main-right {
     background: white;
@@ -894,7 +854,7 @@
   }
 
   .mechanic-card:hover { transform: translateY(-3px); }
-  .mechanic-card.mechanic-note { border-left-color: var(--amber); }
+  .mechanic-card.mechanic-note { border-left-color: var(--logo-yellow); } /* Změněno na logo-yellow */
 
   .mechanic-icon {
     font-size: 28px;
@@ -921,7 +881,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     color: white;
     text-decoration: none;
     padding: 7px 14px;
@@ -1002,8 +962,7 @@
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
-      <div class="logo-icon">TK</div>
-      <div class="logo-text">
+      <img src="logo amk.png" alt="Trabant klub Plzeň" style="height: 42px;"> <div class="logo-text">
         Trabant klub
         <span class="logo-sub">Plzeň · od 1990</span>
       </div>
@@ -1136,8 +1095,180 @@
       <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
     </div>
 
-    <div id="calendar-container">
-        <p style="text-align:center; padding: 40px; color: var(--gray);">Načítám aktuální akce...</p>
+    <div class="month-group reveal">
+      <div class="month-label">🌸 Květen</div>
+      <div class="event-list">
+        <div class="event-item highlight">
+          <div class="event-date">1.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-výlet">🗺️ Výlet</span>
+            <div class="event-title">Den dobré nálady v Kryrech + výlet Kadaň</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">6.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-schůze">📋 Členská schůze</span>
+            <div class="event-title">Členská schůze — přednáška Ondřeje Weise: <em>Na motorce do Maroka a dále pouští ve stopách Dakarského závodu</em></div>
+          </div>
+        </div>
+        <div class="event-item sraz">
+          <div class="event-date">8.–10.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Trabi sraz Český Ráj</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">23.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Sraz historických vozidel v Červeném Újezdě</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">30.<br>KVĚT</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Sraz soc. vozidel Hnačov, jízda HV Bolevec</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-group reveal">
+      <div class="month-label">☀️ Červen</div>
+      <div class="event-list">
+        <div class="event-item sraz">
+          <div class="event-date">5.–7.<br>ČERV</div>
+          <div class="event-body">
+            <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
+            <div class="event-title">Setkání A.I.C.E. — Dvoutakti na kolejích, Osek</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">20.<br>ČERV</div>
+          <div class="event-body">
+            <span class="event-badge badge-výlet">🗺️ Výlet</span>
+            <div class="event-title">Klubový výlet — zaniklá obec Umíř, letiště Plachtín</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">27.<br>ČERV</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">Jízda hraběte Lobkowitze v Křimicích</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-group reveal">
+      <div class="month-label">🌻 Červenec</div>
+      <div class="event-list">
+        <div class="event-item sraz">
+          <div class="event-date">3.–5.<br>ČVNC</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Sraz Morava — Plumlov</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">11.<br>ČVNC</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Setkání</span>
+            <div class="event-title">Setkání youngtimers v Černošíně</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">25.<br>ČVNC</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">66. mil Šumavských — Kašperské Hory</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-group reveal">
+      <div class="month-label">🏖️ Srpen</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">8.<br>SRPEN</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">11. Retrojízda — aneb čím jsme za socialismu jezdili</div>
+          </div>
+        </div>
+        <div class="event-item sraz">
+          <div class="event-date">28.–29.<br>SRPEN</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Sraz</span>
+            <div class="event-title">Trabi sraz Vrbno u Blatné + v sobotu sraz v Chotíkově</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-group reveal">
+      <div class="month-label">🍂 Září</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">2.<br>ZÁŘÍ</div>
+          <div class="event-body">
+            <span class="event-badge badge-schůze">📋 Členská schůze</span>
+            <div class="event-title">Členská schůze</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">13.<br>ZÁŘÍ</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Akce</span>
+            <div class="event-title">Retrogarážovky ve Štáhlavech</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">19.<br>ZÁŘÍ</div>
+          <div class="event-body">
+            <span class="event-badge badge-výlet">🗺️ Výlet</span>
+            <div class="event-title">Klubový výlet — zemědělské muzeum Halže, skanzen Bernau</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-group reveal">
+      <div class="month-label">🍁 Říjen · Listopad · Prosinec</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">17.<br>ŘÍJEN</div>
+          <div class="event-body">
+            <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
+            <div class="event-title">Výlet A.I.C.E. do muzea techniky v Sokolově</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">4.<br>LISTOP</div>
+          <div class="event-body">
+            <span class="event-badge badge-schůze">📋 Členská schůze</span>
+            <div class="event-title">Členská schůze</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">17.<br>LISTOP</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🏁 Jízda</span>
+            <div class="event-title">Sváteční vyjížďka</div>
+          </div>
+        </div>
+        <div class="event-item highlight">
+          <div class="event-date">12.<br>PROSIN</div>
+          <div class="event-body">
+            <span class="event-badge badge-sraz">🎄 Jízda</span>
+            <div class="event-title">Adventní jízda</div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </section>
@@ -1318,14 +1449,19 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-title" id="adminTrigger">AMK Trabant Plzeň z.s.</div>
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom: 20px;">
+            <img src="logo amk.png" alt="Trabant klub Plzeň" style="height: 64px;" id="adminTrigger"> <div>
+                <div class="footer-brand-title" style="margin-bottom:0;">AMK Trabant Plzeň z.s.</div>
+                <div class="logo-sub">Plzeň · od 1990</div>
+                <div class="footer-brand-text" style="margin-top:10px;">
+                    📍 Úslavská 339/2, 326 00 Plzeň<br>
+                    📞 <a href="tel:+420377323689" style="color:#888;">377 323 689</a><br>
+                    ✉️ <a href="mailto:amk@trabantklub.cz" style="color:#888;">amk@trabantklub.cz</a><br>
+                    📬 Datová schránka: pkzw25s
+                </div>
+            </div>
+        </div>
         <p class="footer-brand-text">Spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme přátelství, sdílíme znalosti a udržujeme legendu dvoutaktního motoru při životě od roku 1990.</p>
-        <p class="footer-brand-text" style="margin-top:10px;">
-          📍 Úslavská 339/2, 326 00 Plzeň<br>
-          📞 <a href="tel:+420377323689" style="color:#888;">377 323 689</a><br>
-          ✉️ <a href="mailto:amk@trabantklub.cz" style="color:#888;">amk@trabantklub.cz</a><br>
-          📬 Datová schránka: pkzw25s
-        </p>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Navigace</div>
@@ -1379,7 +1515,7 @@
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nahoru">↑</button>
 
 <script>
-  // NASTAVENÍ GOOGLE SHEETS - POUŽITA VAŠE AKTIVNÍ URL
+  // NASTAVENÍ GOOGLE SHEETS - POUŽITA VAŠE AKTIVNÍ URL (Vloženo)
   const scriptURL = 'https://script.google.com/macros/s/AKfycbyhX3pHDz2zt_RLG4HjjDDQorSga0x-GfP-ibMDMYlmNmxNmYBFzE0V5lHSXPLoohQLHQ/exec';
 
   // Načítání kalendáře
