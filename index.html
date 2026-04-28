@@ -1138,17 +1138,17 @@
       </div>
 
       <div class="info-block reveal">
-        <div class="info-block-icon">✏️</div>
-        <div class="info-block-title">Vaše příspěvky</div>
-        <p class="info-block-text">Napište nám svůj příběh, fotky nebo tip. Rádi zveřejníme vaše zážitky s Trabíkem.</p>
-        <a href="#" class="info-block-link">Přidat příspěvek →</a>
-      </div>
-
-      <div class="info-block reveal">
         <div class="info-block-icon">🤝</div>
         <div class="info-block-title">Naši přátelé</div>
-        <p class="info-block-text">Spolupracujeme s dalšími kluby a nadšenci. Poznáme i vás – přijďte na sraz!</p>
-        <a href="#" class="info-block-link">Přátelé klubu →</a>
+        <p class="info-block-text" style="font-size: 13px; line-height: 1.4;">
+            • <a href="http://www.muzeumlobzy.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Muzeum Příběhy dvoutaktů</a><br>
+            • <a href="http://www.trabantmuzeum.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Trabant Muzeum Motol</a><br>
+            • <a href="http://www.muzeumtrabantu.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Muzeum N. Ves pod Pleší</a><br>
+            • <a href="http://www.krtekracingteam.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Krtek Racing Team</a><br>
+            • <a href="http://www.trabantem.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Půjčovna Trabantů</a><br>
+            • <a href="http://www.trabantshop.cz" target="_blank" style="color:var(--gray);text-decoration:none;">Trabant shop V. Kytka</a>
+        </p>
+        <a href="https://www.trabantklub.cz/index.php?option=com_content&view=category&id=46&Itemid=81" target="_blank" class="info-block-link">Všechny odkazy →</a>
       </div>
 
     </div>
@@ -1331,12 +1331,10 @@
           return;
       }
 
-      // Seskupení podle měsíců
       const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"];
       let html = '';
       let currentMonth = -1;
 
-      // Seřazení podle data
       data.sort((a, b) => new Date(a[0]) - new Date(b[0]));
 
       data.forEach(row => {
@@ -1369,15 +1367,14 @@
 
       html += '</div></div>';
       container.innerHTML = html;
-      initReveals(); // Znovu inicializovat animace
+      initReveals();
     } catch (e) {
       container.innerHTML = '<p>Chyba při načítání dat z tabulky.</p>';
     }
   }
 
-  // Admin Panel logia
   function checkAdmin() {
-      if (document.getElementById('adminPass').value === 'trabant1990') { // <--- VAŠE HESLO
+      if (document.getElementById('adminPass').value === 'trabant1990') {
           document.getElementById('adminLogin').style.display = 'none';
           document.getElementById('adminForm').style.display = 'block';
       } else {
@@ -1409,7 +1406,6 @@
     }
   });
 
-  // Skrytý trigger (3x klik na název klubu v patičce otevře admin panel)
   let clickCount = 0;
   document.getElementById('adminTrigger').onclick = () => {
       clickCount++;
@@ -1419,7 +1415,6 @@
       }
   };
 
-  // Mobile menu
   function openMenu() {
     document.getElementById('mobileMenu').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1429,13 +1424,11 @@
     document.body.style.overflow = '';
   }
 
-  // Scroll to top button
   const scrollBtn = document.getElementById('scrollTop');
   window.addEventListener('scroll', () => {
     scrollBtn.classList.toggle('visible', window.scrollY > 400);
   });
 
-  // Reveal on scroll logic
   function initReveals() {
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -1449,7 +1442,6 @@
     reveals.forEach(el => observer.observe(el));
   }
 
-  // Smooth active nav link
   const sections = document.querySelectorAll('section[id], div[id]');
   const navLinks = document.querySelectorAll('nav a');
   window.addEventListener('scroll', () => {
@@ -1462,7 +1454,6 @@
     });
   });
 
-  // Spuštění po načtení
   window.onload = () => {
       loadCalendar();
       initReveals();
