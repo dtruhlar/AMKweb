@@ -927,11 +927,45 @@
 
   #scrollTop:hover { transform: translateY(-3px); }
   #scrollTop.visible { display: flex; }
+
+  /* ── ADMIN MODAL ── */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-content {
+    background: var(--cream);
+    padding: 32px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  .admin-form input, .admin-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    font-family: inherit;
+  }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
@@ -955,7 +989,6 @@
   </div>
 </header>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="closeMenu()">×</button>
   <a href="#aktuality" onclick="closeMenu()">Aktuality</a>
@@ -966,7 +999,6 @@
   <a href="#kontakt" class="mob-cta" onclick="closeMenu()">Kontakt</a>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-badge">🏁 Trabantklub Plzeň</div>
@@ -979,7 +1011,6 @@
   </div>
 </section>
 
-<!-- OPENING HOURS BANNER -->
 <div class="hours-banner" id="oteviraci-doba">
   <div class="hours-inner">
     <div class="hours-label">⏰ Kancelář &amp; prodejna ND — provozní doba</div>
@@ -992,10 +1023,8 @@
   </div>
 </div>
 
-<!-- MAIN -->
 <main>
 
-  <!-- AKTUALITY -->
   <section id="aktuality">
     <div class="section-header reveal">
       <div class="section-tag">Novinky</div>
@@ -1048,7 +1077,6 @@
 
     </div>
 
-    <!-- Zpravodaj CTA -->
     <div class="zpravodaj-cta reveal">
       <div class="zpravodaj-icon">📰</div>
       <div class="zpravodaj-body">
@@ -1062,14 +1090,12 @@
 
   </section>
 
-  <!-- KALENDÁŘ AKCÍ -->
   <section id="akce" class="calendar-section">
     <div class="section-header reveal">
       <div class="section-tag">Výlety · Srazy · Schůze</div>
       <div class="section-title">Kalendář akcí 2026</div>
     </div>
 
-    <!-- LEGENDA -->
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;" class="reveal">
       <span class="event-badge badge-sraz">🏁 Sraz / akce</span>
       <span class="event-badge badge-schůze">📋 Členská schůze</span>
@@ -1077,191 +1103,12 @@
       <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
     </div>
 
-    <!-- KVĚTEN -->
-    <div class="month-group reveal">
-      <div class="month-label">🌸 Květen</div>
-      <div class="event-list">
-        <div class="event-item highlight">
-          <div class="event-date">1.<br>KVĚT</div>
-          <div class="event-body">
-            <span class="event-badge badge-výlet">🗺️ Výlet</span>
-            <div class="event-title">Den dobré nálady v Kryrech + výlet Kadaň</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">6.<br>KVĚT</div>
-          <div class="event-body">
-            <span class="event-badge badge-schůze">📋 Členská schůze</span>
-            <div class="event-title">Členská schůze — přednáška Ondřeje Weise: <em>Na motorce do Maroka a dále pouští ve stopách Dakarského závodu</em></div>
-          </div>
-        </div>
-        <div class="event-item sraz">
-          <div class="event-date">8.–10.<br>KVĚT</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Sraz</span>
-            <div class="event-title">Trabi sraz Český Ráj</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">23.<br>KVĚT</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Sraz</span>
-            <div class="event-title">Sraz historických vozidel v Červeném Újezdě</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">30.<br>KVĚT</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Sraz</span>
-            <div class="event-title">Sraz soc. vozidel Hnačov, jízda HV Bolevec</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ČERVEN -->
-    <div class="month-group reveal">
-      <div class="month-label">☀️ Červen</div>
-      <div class="event-list">
-        <div class="event-item sraz">
-          <div class="event-date">5.–7.<br>ČERV</div>
-          <div class="event-body">
-            <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
-            <div class="event-title">Setkání A.I.C.E. — Dvoutakti na kolejích, Osek</div>
-          </div>
-        </div>
-        <div class="event-item highlight">
-          <div class="event-date">20.<br>ČERV</div>
-          <div class="event-body">
-            <span class="event-badge badge-výlet">🗺️ Výlet</span>
-            <div class="event-title">Klubový výlet — zaniklá obec Umíř, letiště Plachtín</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">27.<br>ČERV</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Akce</span>
-            <div class="event-title">Jízda hraběte Lobkowitze v Křimicích</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ČERVENEC -->
-    <div class="month-group reveal">
-      <div class="month-label">🌻 Červenec</div>
-      <div class="event-list">
-        <div class="event-item sraz">
-          <div class="event-date">3.–5.<br>ČVNC</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Sraz</span>
-            <div class="event-title">Sraz Morava — Plumlov</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">11.<br>ČVNC</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Setkání</span>
-            <div class="event-title">Setkání youngtimers v Černošíně</div>
-          </div>
-        </div>
-        <div class="event-item highlight">
-          <div class="event-date">25.<br>ČVNC</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Akce</span>
-            <div class="event-title">66. mil Šumavských — Kašperské Hory</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SRPEN -->
-    <div class="month-group reveal">
-      <div class="month-label">🏖️ Srpen</div>
-      <div class="event-list">
-        <div class="event-item">
-          <div class="event-date">8.<br>SRPEN</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Akce</span>
-            <div class="event-title">11. Retrojízda — aneb čím jsme za socialismu jezdili</div>
-          </div>
-        </div>
-        <div class="event-item sraz">
-          <div class="event-date">28.–29.<br>SRPEN</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Sraz</span>
-            <div class="event-title">Trabi sraz Vrbno u Blatné + v sobotu sraz v Chotíkově</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ZÁŘÍ -->
-    <div class="month-group reveal">
-      <div class="month-label">🍂 Září</div>
-      <div class="event-list">
-        <div class="event-item">
-          <div class="event-date">2.<br>ZÁŘÍ</div>
-          <div class="event-body">
-            <span class="event-badge badge-schůze">📋 Členská schůze</span>
-            <div class="event-title">Členská schůze</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">13.<br>ZÁŘÍ</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Akce</span>
-            <div class="event-title">Retrogarážovky ve Štáhlavech</div>
-          </div>
-        </div>
-        <div class="event-item highlight">
-          <div class="event-date">19.<br>ZÁŘÍ</div>
-          <div class="event-body">
-            <span class="event-badge badge-výlet">🗺️ Výlet</span>
-            <div class="event-title">Klubový výlet — zemědělské muzeum Halže, skanzen Bernau</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ŘÍJEN – PROSINEC -->
-    <div class="month-group reveal">
-      <div class="month-label">🍁 Říjen · Listopad · Prosinec</div>
-      <div class="event-list">
-        <div class="event-item">
-          <div class="event-date">17.<br>ŘÍJEN</div>
-          <div class="event-body">
-            <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
-            <div class="event-title">Výlet A.I.C.E. do muzea techniky v Sokolově</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">4.<br>LISTOP</div>
-          <div class="event-body">
-            <span class="event-badge badge-schůze">📋 Členská schůze</span>
-            <div class="event-title">Členská schůze</div>
-          </div>
-        </div>
-        <div class="event-item">
-          <div class="event-date">17.<br>LISTOP</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🏁 Jízda</span>
-            <div class="event-title">Sváteční vyjížďka</div>
-          </div>
-        </div>
-        <div class="event-item highlight">
-          <div class="event-date">12.<br>PROSIN</div>
-          <div class="event-body">
-            <span class="event-badge badge-sraz">🎄 Jízda</span>
-            <div class="event-title">Adventní jízda</div>
-          </div>
-        </div>
-      </div>
+    <div id="calendar-container">
+        <p style="text-align:center; padding: 40px; color: var(--gray);">Načítám aktuální akce...</p>
     </div>
 
   </section>
 
-  <!-- INFO BLOCKS -->
   <section id="o-nas">
     <div class="section-header reveal">
       <div class="section-tag">Vše na jednom místě</div>
@@ -1307,14 +1154,12 @@
     </div>
   </section>
 
-  <!-- KONTAKT -->
   <section id="kontakt">
     <div class="section-header reveal">
       <div class="section-tag">Přijďte, zavolejte nebo napište</div>
       <div class="section-title">Kontakt</div>
     </div>
 
-    <!-- Hlavní kontaktní karta -->
     <div class="contact-main reveal">
       <div class="contact-main-left">
         <div class="contact-org">AMK Trabant Plzeň z.s.</div>
@@ -1367,7 +1212,6 @@
       </div>
     </div>
 
-    <!-- Servisní kontakty -->
     <div class="section-header reveal" style="margin-top:48px;">
       <div class="section-tag">Opravy &amp; servis</div>
       <div class="section-title">Mechanici</div>
@@ -1407,12 +1251,11 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-title">AMK Trabant Plzeň z.s.</div>
+        <div class="footer-brand-title" id="adminTrigger">AMK Trabant Plzeň z.s.</div>
         <p class="footer-brand-text">Spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme přátelství, sdílíme znalosti a udržujeme legendu dvoutaktního motoru při životě od roku 1990.</p>
         <p class="footer-brand-text" style="margin-top:10px;">
           📍 Úslavská 339/2, 326 00 Plzeň<br>
@@ -1443,10 +1286,139 @@
   </div>
 </footer>
 
-<!-- SCROLL TO TOP -->
+<div class="modal" id="adminModal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="document.getElementById('adminModal').style.display='none'">×</span>
+        <h2 class="section-title" style="font-size: 32px; margin-bottom: 20px;">Správa kalendáře</h2>
+        
+        <div id="adminLogin">
+            <input type="password" id="adminPass" placeholder="Heslo pro úpravy">
+            <button class="btn btn-primary" onclick="checkAdmin()">Vstoupit</button>
+        </div>
+
+        <form id="adminForm" class="admin-form" style="display:none;">
+            <input type="date" id="eventDate" required>
+            <input type="text" id="eventTitle" placeholder="Název akce" required>
+            <select id="eventType">
+                <option value="sraz">Sraz / akce</option>
+                <option value="schůze">Členská schůze</option>
+                <option value="výlet">Výlet</option>
+                <option value="aice">A.I.C.E.</option>
+            </select>
+            <label style="display:block; margin-bottom: 12px; font-size: 14px;">
+                <input type="checkbox" id="eventHighlight" style="width:auto; margin-bottom:0;"> Zvýraznit akci?
+            </label>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Přidat do tabulky</button>
+        </form>
+    </div>
+</div>
+
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nahoru">↑</button>
 
 <script>
+  // NASTAVENÍ GOOGLE SHEETS
+  const scriptURL = 'ZDE_VLOZTE_URL_VASI_GOOGLE_APPS_SCRIPT_APLIKACE'; // <--- DOPLNIT!
+
+  // Načítání kalendáře
+  async function loadCalendar() {
+    const container = document.getElementById('calendar-container');
+    try {
+      const response = await fetch(scriptURL);
+      const data = await response.json();
+      
+      if (data.length === 0) {
+          container.innerHTML = '<p>Žádné plánované akce.</p>';
+          return;
+      }
+
+      // Seskupení podle měsíců
+      const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"];
+      let html = '';
+      let currentMonth = -1;
+
+      // Seřazení podle data
+      data.sort((a, b) => new Date(a[0]) - new Date(b[0]));
+
+      data.forEach(row => {
+        const d = new Date(row[0]);
+        const m = d.getMonth();
+        const den = d.getDate();
+        const zkratkaMesice = months[m].substring(0, 4).toUpperCase();
+        
+        if (m !== currentMonth) {
+          if (currentMonth !== -1) html += '</div></div>';
+          currentMonth = m;
+          html += `<div class="month-group reveal">
+                    <div class="month-label">${months[m]}</div>
+                    <div class="event-list">`;
+        }
+
+        const isHighlight = row[3] === 'ano' || row[3] === true;
+        const typeClass = `badge-${row[2].toLowerCase()}`;
+        const itemClass = isHighlight ? 'highlight' : (row[2].toLowerCase() === 'sraz' ? 'sraz' : '');
+
+        html += `
+          <div class="event-item ${itemClass}">
+            <div class="event-date">${den}.<br>${zkratkaMesice}</div>
+            <div class="event-body">
+              <span class="event-badge ${typeClass}">${row[2]}</span>
+              <div class="event-title">${row[1]}</div>
+            </div>
+          </div>`;
+      });
+
+      html += '</div></div>';
+      container.innerHTML = html;
+      initReveals(); // Znovu inicializovat animace
+    } catch (e) {
+      container.innerHTML = '<p>Chyba při načítání dat z tabulky.</p>';
+    }
+  }
+
+  // Admin Panel logia
+  function checkAdmin() {
+      if (document.getElementById('adminPass').value === 'trabant1990') { // <--- VAŠE HESLO
+          document.getElementById('adminLogin').style.display = 'none';
+          document.getElementById('adminForm').style.display = 'block';
+      } else {
+          alert('Špatné heslo');
+      }
+  }
+
+  document.getElementById('adminForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.innerText = 'Odesílám...';
+    
+    const payload = {
+      date: document.getElementById('eventDate').value,
+      title: document.getElementById('eventTitle').value,
+      type: document.getElementById('eventType').value,
+      highlight: document.getElementById('eventHighlight').checked ? 'ano' : 'ne'
+    };
+
+    try {
+      await fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+      alert('Akce přidána do Google tabulky!');
+      location.reload();
+    } catch (err) {
+      alert('Chyba při odesílání.');
+    }
+  });
+
+  // Skrytý trigger (3x klik na název klubu v patičce otevře admin panel)
+  let clickCount = 0;
+  document.getElementById('adminTrigger').onclick = () => {
+      clickCount++;
+      if (clickCount === 3) {
+          document.getElementById('adminModal').style.display = 'flex';
+          clickCount = 0;
+      }
+  };
+
   // Mobile menu
   function openMenu() {
     document.getElementById('mobileMenu').classList.add('open');
@@ -1463,17 +1435,19 @@
     scrollBtn.classList.toggle('visible', window.scrollY > 400);
   });
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        e.target.style.transitionDelay = (i % 4) * 0.1 + 's';
-        e.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  // Reveal on scroll logic
+  function initReveals() {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i % 4) * 0.1 + 's';
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  }
 
   // Smooth active nav link
   const sections = document.querySelectorAll('section[id], div[id]');
@@ -1487,6 +1461,12 @@
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   });
+
+  // Spuštění po načtení
+  window.onload = () => {
+      loadCalendar();
+      initReveals();
+  };
 </script>
 </body>
 </html>
