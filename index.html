@@ -11,9 +11,13 @@
   :root {
     --cream: #F5F0E8;
     --dark: #1A1A18;
-    --red: #C8252A;
+    --logo-blue: #2040b0; /* Modrá z loga */
+    --logo-red: #C8252A;  /* Červená z loga */
+    --logo-yellow: #E8A020; /* Žlutá z loga */
+    --logo-green: #2a6a2a; /* Zelená z loga */
+    --red: var(--logo-red);
     --red-light: #E8353B;
-    --amber: #E8A020;
+    --amber: var(--logo-yellow);
     --gray: #6B6B60;
     --gray-light: #E8E4DC;
     --white: #FDFAF5;
@@ -35,7 +39,7 @@
 
   /* ── HEADER ── */
   header {
-    background: var(--dark);
+    background: var(--logo-blue); /* Změněno na modrou z loga */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -59,19 +63,10 @@
     text-decoration: none;
   }
 
-  .logo-icon {
-    width: 42px;
+  /* Nahrazení logo-icon obrázkem */
+  .logo img {
     height: 42px;
-    background: var(--red);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 22px;
-    color: white;
-    letter-spacing: 1px;
-    flex-shrink: 0;
+    width: auto;
   }
 
   .logo-text {
@@ -181,7 +176,7 @@
 
   /* ── HERO ── */
   .hero {
-    background: var(--dark);
+    background: var(--logo-blue); /* Sladěno s hlavičkou */
     color: white;
     padding: 60px 20px 70px;
     position: relative;
@@ -725,7 +720,7 @@
   .event-item.sraz { border-left-color: var(--red); }
 
   .event-date {
-    background: var(--dark);
+    background: var(--logo-blue); /* Sladěno s novou modrou */
     color: white;
     border-radius: 8px;
     padding: 6px 12px;
@@ -766,8 +761,8 @@
 
   .event-badge.badge-sraz { background: rgba(200,37,42,0.1); color: var(--red); }
   .event-badge.badge-schůze { background: rgba(232,160,32,0.15); color: #a06000; }
-  .event-badge.badge-výlet { background: rgba(60,130,60,0.1); color: #2a6a2a; }
-  .event-badge.badge-aice { background: rgba(60,80,180,0.1); color: #2040b0; }
+  .event-badge.badge-výlet { background: rgba(60,130,60,0.1); color: var(--logo-green); }
+  .event-badge.badge-aice { background: rgba(60,80,180,0.1); color: var(--logo-blue); }
 
   @media (max-width: 480px) {
     .event-item { flex-direction: column; gap: 10px; }
@@ -1002,7 +997,7 @@
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
-      <div class="logo-icon">TK</div>
+      <img src="logo amk.png" alt="Trabant klub Plzeň">
       <div class="logo-text">
         Trabant klub
         <span class="logo-sub">Plzeň · od 1990</span>
@@ -1225,7 +1220,10 @@
 
     <div class="contact-main reveal">
       <div class="contact-main-left">
-        <div class="contact-org">AMK Trabant Plzeň z.s.</div>
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+           <img src="logo amk.png" alt="Logo" style="height: 60px; cursor: pointer;" id="adminTrigger">
+           <div class="contact-org" style="margin-bottom: 0;">AMK Trabant Plzeň z.s.</div>
+        </div>
         <div class="contact-address">
           <span>📍</span>
           <div>
@@ -1318,7 +1316,7 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-title" id="adminTrigger">AMK Trabant Plzeň z.s.</div>
+        <div class="footer-brand-title">AMK Trabant Plzeň z.s.</div>
         <p class="footer-brand-text">Spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme přátelství, sdílíme znalosti a udržujeme legendu dvoutaktního motoru při životě od roku 1990.</p>
         <p class="footer-brand-text" style="margin-top:10px;">
           📍 Úslavská 339/2, 326 00 Plzeň<br>
