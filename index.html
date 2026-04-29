@@ -15,7 +15,7 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            /* Změněno na Trabant Červenou místo PPweb Zelené */
+            /* Trabant Červená */
             --accent: #C8252A;
             --accent-dim: rgba(200, 37, 42, 0.12);
             --accent-glow: rgba(200, 37, 42, 0.25);
@@ -431,7 +431,7 @@
             color: var(--accent);
         }
 
-        /* ===== HOURS BANNER (NEW) ===== */
+        /* ===== HOURS BANNER ===== */
         .hours-banner {
             background: var(--accent-dim);
             border-top: 1px solid var(--border);
@@ -781,7 +781,7 @@
         </div>
         <div class="hero-right">
             <div class="hero-img-stack">
-                <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?q=80&w=2000" alt="Vintage Trabant">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Trabant_601_01.jpg/1280px-Trabant_601_01.jpg" alt="Vintage Trabant">
             </div>
             <div class="hero-stat stat-1">
                 <div class="stat-num">1990</div>
@@ -904,6 +904,12 @@
                                 <a href="http://www.trabantmuzeum.cz" target="_blank">
                                     Trabant Muzeum Motol
                                     <span>trabantmuzeum.cz</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.muzeumtrabantu.cz" target="_blank">
+                                    Muzeum N. Ves pod Pleší
+                                    <span>muzeumtrabantu.cz</span>
                                 </a>
                             </li>
                         </ul>
@@ -1064,13 +1070,12 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // ===== NAČÍTÁNÍ KALENDÁŘE (ZE PŮVODNÍHO TRABANT WEBU) =====
+        // ===== NAČÍTÁNÍ KALENDÁŘE =====
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('calendar-container');
             if(!container) return;
             
             // Simulační vykreslení kalendáře z Trabant struktury do PPweb designu
-            // Původní skript sahal na Google Script URL. Vzhledem k plné adaptaci do nového designu:
             container.innerHTML = `
                 <div class="event-list">
                     <div class="event-item sraz">
