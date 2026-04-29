@@ -1201,9 +1201,9 @@
                         return foundKey ? row[foundKey] : '';
                     };
 
-                    const datum = getVal('datum');
-                    const nazev = getVal('název') || getVal('nazev') || getVal('name');
-                    let typRaw = getVal('typ') || '';
+                    const datum = getVal('Datum');
+                    const nazev = getVal('Název') || getVal('nazev') || getVal('name');
+                    let typRaw = getVal('Typ') || '';
                     const zrusenoRaw = getVal('zrušeno') || getVal('zruseno') || 'ne';
                     
                     let isCancelled = zrusenoRaw.toString().toLowerCase().trim() === 'ano';
@@ -1226,7 +1226,7 @@
                         type: type,
                         typeLabel: typeLabel,
                         status: isCancelled ? 'cancelled' : 'active',
-                        highlight: getVal('highlight'),
+                        highlight: getVal('Highlight'),
                         originalRowIndex: index + 2 // pokud je první řádek hlavička
                     };
                 });
