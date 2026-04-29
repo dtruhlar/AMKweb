@@ -3,1334 +3,826 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TRABANT klub Plzeň – nadšenci do trabantů od roku 1990">
-<title>AMK | Trabant klub Plzeň</title>
+<title>AMK TRABANT · PLZEŇ · OD 1990</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Space+Mono:wght@400;700&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --cream: #F5F0E8;
-    --dark: #1A1A18;
-    --logo-blue: #2040b0; /* Modrá z loga */
-    --logo-red: #C8252A;  /* Červená z loga */
-    --logo-yellow: #E8A020; /* Žlutá z loga */
-    --logo-green: #2a6a2a; /* Zelená z loga */
-    --red: var(--logo-red);
-    --red-light: #E8353B;
-    --amber: var(--logo-yellow);
-    --gray: #6B6B60;
-    --gray-light: #E8E4DC;
-    --white: #FDFAF5;
-    --shadow: 0 4px 24px rgba(26,26,24,0.12);
-    --radius: 12px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  /* ── HEADER ── */
-  header {
-    background: var(--logo-blue); /* Změněno na modrou z loga */
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 3px solid var(--red);
-  }
-
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-
-  /* Nahrazení logo-icon obrázkem */
-  .logo img {
-    height: 42px;
-    width: auto;
-  }
-
-  .logo-text {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 22px;
-    color: white;
-    letter-spacing: 2px;
-    line-height: 1.1;
-  }
-
-  .logo-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    color: var(--amber);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    display: block;
-    font-weight: 500;
-  }
-
-  /* Desktop nav */
-  nav { display: flex; gap: 4px; }
-
-  nav a {
-    color: #ccc;
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  nav a:hover, nav a.active {
-    color: white;
-    background: rgba(255,255,255,0.1);
-  }
-
-  nav a.nav-cta {
-    background: var(--red);
-    color: white;
-    margin-left: 6px;
-  }
-
-  nav a.nav-cta:hover { background: var(--red-light); }
-
-  /* Hamburger */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 8px;
-    border: none;
-    background: none;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-
-  /* Mobile menu */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: var(--dark);
-    z-index: 200;
-    flex-direction: column;
-    padding: 80px 32px 40px;
-    gap: 8px;
-  }
-
-  .mobile-menu.open { display: flex; }
-
-  .mobile-menu-close {
-    position: absolute;
-    top: 16px;
-    right: 20px;
-    font-size: 32px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    line-height: 1;
-  }
-
-  .mobile-menu a {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 36px;
-    color: white;
-    text-decoration: none;
-    letter-spacing: 2px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    transition: color 0.2s;
-  }
-
-  .mobile-menu a:hover { color: var(--amber); }
-  .mobile-menu a.mob-cta { color: var(--red); }
-
-  /* ── HERO ── */
-  .hero {
-    background: var(--logo-blue); /* Sladěno s hlavičkou */
-    color: white;
-    padding: 60px 20px 70px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: 'T';
-    font-family: 'Bebas Neue', cursive;
-    font-size: 500px;
-    color: rgba(255,255,255,0.03);
-    position: absolute;
-    right: -60px;
-    top: -100px;
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    background: var(--red);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 100px;
-    margin-bottom: 20px;
-    animation: fadeDown 0.6s ease both;
-  }
-
-  .hero h1 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(52px, 10vw, 96px);
-    letter-spacing: 4px;
-    line-height: 0.95;
-    margin-bottom: 24px;
-    animation: fadeDown 0.6s 0.1s ease both;
-  }
-
-  .hero h1 span { color: var(--amber); }
-
-  .hero-desc {
-    font-size: clamp(16px, 2.5vw, 20px);
-    color: #bbb;
-    max-width: 560px;
-    margin-bottom: 36px;
-    animation: fadeDown 0.6s 0.2s ease both;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    animation: fadeDown 0.6s 0.3s ease both;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--red);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background: var(--red-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(200,37,42,0.4);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: white;
-    border: 2px solid rgba(255,255,255,0.3);
-  }
-
-  .btn-outline:hover {
-    border-color: white;
-    background: rgba(255,255,255,0.08);
-  }
-
-  /* ── OPENING HOURS BANNER ── */
-  .hours-banner {
-    background: var(--amber);
-    padding: 14px 20px;
-  }
-
-  .hours-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .hours-label {
-    font-weight: 700;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--dark);
-    flex-shrink: 0;
-  }
-
-  .hours-grid {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .hours-item {
-    background: rgba(26,26,24,0.12);
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--dark);
-    white-space: nowrap;
-  }
-
-  .hours-item span {
-    font-weight: 400;
-    opacity: 0.75;
-  }
-
-  /* ── MAIN CONTENT ── */
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 48px 20px 80px;
-  }
-
-  /* Section headings */
-  .section-header {
-    margin-bottom: 32px;
-  }
-
-  .section-tag {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 8px;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(36px, 5vw, 52px);
-    letter-spacing: 2px;
-    color: var(--dark);
-    line-height: 1;
-  }
-
-  /* ── NEWS GRID ── */
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 64px;
-  }
-
-  .news-card {
-    background: white;
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .news-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(26,26,24,0.16);
-  }
-
-  .news-card-header {
-    background: var(--dark);
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .news-card-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--red);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-
-  .news-card-date {
-    font-size: 12px;
-    color: #888;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  .news-card-body {
-    padding: 20px;
-    flex: 1;
-  }
-
-  .news-card-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 26px;
-    letter-spacing: 1px;
-    color: var(--dark);
-    margin-bottom: 10px;
-    line-height: 1.1;
-  }
-
-  .news-card-text {
-    font-size: 15px;
-    color: var(--gray);
-    line-height: 1.6;
-  }
-
-  .news-card-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 14px 20px;
-    background: var(--gray-light);
-    color: var(--dark);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    border-top: 1px solid #e8e4dc;
-    transition: background 0.2s;
-  }
-
-  .news-card-link:hover { background: var(--amber); }
-
-  /* Newsletter highlight card */
-  .news-card.highlight .news-card-header { background: var(--red); }
-  .news-card.highlight .news-card-link { background: var(--dark); color: white; }
-  .news-card.highlight .news-card-link:hover { background: #333; }
-
-  /* ── INFO BLOCKS ── */
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
-    margin-bottom: 64px;
-  }
-
-  .info-block {
-    background: white;
-    border-radius: var(--radius);
-    padding: 24px;
-    box-shadow: var(--shadow);
-    border-left: 4px solid var(--red);
-    transition: transform 0.2s;
-  }
-
-  .info-block:hover { transform: translateY(-3px); }
-
-  .info-block-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
-  }
-
-  .info-block-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 22px;
-    letter-spacing: 1px;
-    color: var(--dark);
-    margin-bottom: 6px;
-  }
-
-  .info-block-text {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.5;
-  }
-
-  .info-block-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 12px;
-    color: var(--red);
-    font-weight: 600;
-    font-size: 13px;
-    text-decoration: none;
-  }
-
-  .info-block-link:hover { text-decoration: underline; }
-
-  /* Speciální úprava pro sekci Přátelé */
-  .friends-list {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .friend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    padding: 6px 10px;
-    background: var(--gray-light);
-    border-radius: 8px;
-    transition: all 0.2s;
-  }
-  .friend-item:hover {
-    background: var(--amber);
-    transform: translateX(4px);
-  }
-  .friend-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--dark);
-    line-height: 1.2;
-  }
-  .friend-url {
-    font-size: 11px;
-    color: var(--gray);
-    display: block;
-  }
-
-  /* ── ZPRAVODAJ CTA ── */
-  .zpravodaj-cta {
-    background: var(--dark);
-    border-radius: 16px;
-    padding: 40px 36px;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    margin-bottom: 64px;
-    flex-wrap: wrap;
-  }
-
-  .zpravodaj-icon {
-    font-size: 64px;
-    flex-shrink: 0;
-  }
-
-  .zpravodaj-body { flex: 1; min-width: 200px; }
-
-  .zpravodaj-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 40px;
-    letter-spacing: 2px;
-    color: white;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .zpravodaj-title span { color: var(--amber); }
-
-  .zpravodaj-text {
-    color: #aaa;
-    font-size: 15px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--dark);
-    color: white;
-    padding: 48px 20px 24px;
-    margin-top: 0;
-  }
-
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  .footer-brand-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 32px;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-  }
-
-  .footer-brand-text {
-    color: #888;
-    font-size: 14px;
-    line-height: 1.7;
-    max-width: 320px;
-  }
-
-  .footer-col-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 18px;
-    letter-spacing: 2px;
-    color: var(--amber);
-    margin-bottom: 16px;
-    text-transform: uppercase;
-  }
-
-  .footer-col a, .footer-col p {
-    display: block;
-    color: #999;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 4px 0;
-    transition: color 0.2s;
-    line-height: 1.6;
-  }
-
-  .footer-col a:hover { color: white; }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: gap;
-    gap: 12px;
-  }
-
-  .footer-bottom p {
-    color: #666;
-    font-size: 13px;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { display: none; }
-    .hamburger { display: flex; }
-
-    .hero { padding: 48px 20px 56px; }
-    .hero::before { font-size: 280px; right: -30px; top: -40px; }
-    .hero h1 { font-size: 56px; }
-
-    .hours-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
-
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-
-    .zpravodaj-cta {
-      padding: 28px 24px;
-      gap: 20px;
-    }
-
-    .zpravodaj-icon { font-size: 48px; }
-    .zpravodaj-title { font-size: 32px; }
-  }
-
-  @media (max-width: 480px) {
-    .hero-actions { flex-direction: column; }
-    .hero-actions .btn { text-align: center; justify-content: center; }
-    .btn { padding: 15px 24px; font-size: 16px; }
-  }
-
-  /* ── CALENDAR ── */
-  .calendar-section { margin-bottom: 64px; }
-
-  .month-group { margin-bottom: 28px; }
-
-  .month-label {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 28px;
-    letter-spacing: 3px;
-    color: var(--red);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--gray-light);
-  }
-
-  .event-list { display: flex; flex-direction: column; gap: 10px; }
-
-  .event-item {
-    background: white;
-    border-radius: var(--radius);
-    padding: 16px 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    box-shadow: var(--shadow);
-    border-left: 4px solid var(--gray-light);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .event-item:hover {
-    border-left-color: var(--red);
-    transform: translateX(4px);
-  }
-
-  .event-item.highlight { border-left-color: var(--amber); }
-  .event-item.sraz { border-left-color: var(--red); }
-
-  .event-date {
-    background: var(--logo-blue); /* Sladěno s novou modrou */
-    color: white;
-    border-radius: 8px;
-    padding: 6px 12px;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 18px;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    min-width: 72px;
-    text-align: center;
-    line-height: 1.2;
-  }
-
-  .event-item.highlight .event-date { background: var(--amber); color: var(--dark); }
-  .event-item.sraz .event-date { background: var(--red); }
-
-  .event-body { flex: 1; }
-
-  .event-title {
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--dark);
-    line-height: 1.4;
-  }
-
-  .event-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-bottom: 4px;
-    background: var(--gray-light);
-    color: var(--gray);
-  }
-
-  .event-badge.badge-sraz { background: rgba(200,37,42,0.1); color: var(--red); }
-  .event-badge.badge-schůze { background: rgba(232,160,32,0.15); color: #a06000; }
-  .event-badge.badge-výlet { background: rgba(60,130,60,0.1); color: var(--logo-green); }
-  .event-badge.badge-aice { background: rgba(60,80,180,0.1); color: var(--logo-blue); }
-
-  @media (max-width: 480px) {
-    .event-item { flex-direction: column; gap: 10px; }
-    .event-date { align-self: flex-start; }
-  }
-
-  /* ── CONTACT ── */
-  .contact-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 16px;
-  }
-
-  .contact-main-left {
-    background: var(--dark);
-    border-radius: var(--radius);
-    padding: 32px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .contact-org {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 28px;
-    letter-spacing: 2px;
-    color: var(--amber);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .contact-address {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    color: #ccc;
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  .contact-address span { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
-
-  .contact-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 15px;
-  }
-
-  .contact-row span { font-size: 18px; flex-shrink: 0; }
-
-  .contact-row a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s;
-  }
-
-  .contact-row a:hover { color: var(--amber); }
-
-  .contact-main-right {
-    background: white;
-    border-radius: var(--radius);
-    padding: 32px;
-    box-shadow: var(--shadow);
-  }
-
-  .contact-hours-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 22px;
-    letter-spacing: 1px;
-    color: var(--dark);
-    margin-bottom: 20px;
-  }
-
-  .contact-hours-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .contact-hours-table tr {
-    border-bottom: 1px solid var(--gray-light);
-  }
-
-  .contact-hours-table td {
-    padding: 10px 4px;
-    font-size: 15px;
-    vertical-align: top;
-  }
-
-  .contact-hours-table td:first-child {
-    font-weight: 600;
-    color: var(--dark);
-    white-space: nowrap;
-    padding-right: 20px;
-    width: 40%;
-  }
-
-  .contact-hours-table td:last-child { color: var(--gray); }
-
-  .contact-hours-table tr.closed td { color: #bbb; font-style: italic; }
-  .contact-hours-table tr.closed td:first-child { font-weight: 400; }
-
-  /* Mechanic cards */
-  .mechanic-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-    margin-bottom: 64px;
-  }
-
-  .mechanic-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 24px;
-    box-shadow: var(--shadow);
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    border-left: 4px solid var(--red);
-    transition: transform 0.2s;
-  }
-
-  .mechanic-card:hover { transform: translateY(-3px); }
-  .mechanic-card.mechanic-note { border-left-color: var(--amber); }
-
-  .mechanic-icon {
-    font-size: 28px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .mechanic-name {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 22px;
-    letter-spacing: 1px;
-    color: var(--dark);
-    margin-bottom: 4px;
-  }
-
-  .mechanic-desc {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-
-  .mechanic-phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--dark);
-    color: white;
-    text-decoration: none;
-    padding: 7px 14px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: background 0.2s;
-  }
-
-  .mechanic-phone:hover { background: var(--red); }
-
-  @media (max-width: 768px) {
-    .contact-main { grid-template-columns: 1fr; }
-  }
-
-  /* ── SCROLL TO TOP ── */
-  #scrollTop {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 48px;
-    height: 48px;
-    background: var(--red);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 20px;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(200,37,42,0.4);
-    transition: transform 0.2s;
-    z-index: 50;
-  }
-
-  #scrollTop:hover { transform: translateY(-3px); }
-  #scrollTop.visible { display: flex; }
-
-  /* ── ADMIN MODAL ── */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background: rgba(0,0,0,0.8);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .modal-content {
-    background: var(--cream);
-    padding: 32px;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 500px;
-    position: relative;
-  }
-  .modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
-    font-size: 24px;
-  }
-  .admin-form input, .admin-form select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid var(--gray-light);
-    border-radius: 8px;
-    font-family: inherit;
-  }
+:root {
+  --ink:     #0A0906;
+  --ink2:    #111008;
+  --rust:    #C8252A;
+  --rust2:   #E03035;
+  --amber:   #E8A020;
+  --amber2:  #F5B830;
+  --steel:   #8A9090;
+  --steel2:  #B0BCBC;
+  --cream:   #F0EBE0;
+  --cream2:  #E8E0D0;
+  --white:   #FAFAF8;
+  --green:   #2D7A2D;
+  --gap: 3px;
+  --f-display: 'Black Han Sans', sans-serif;
+  --f-mono:    'Space Mono', monospace;
+  --f-title:   'Oswald', sans-serif;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--f-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* Scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+}
+
+/* Grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  animation: grain 0.8s steps(2) infinite;
+}
+@keyframes grain {
+  0%,100%{transform:translate(0,0)} 10%{transform:translate(-2%,-3%)} 30%{transform:translate(3%,-1%)} 50%{transform:translate(-1%,2%)} 70%{transform:translate(2%,3%)} 90%{transform:translate(-3%,1%)}
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink2); }
+::-webkit-scrollbar-thumb { background: var(--rust); }
+
+/* ── HEADER ── */
+#site-header {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 800; height: 56px;
+  display: flex; align-items: stretch;
+  transition: background 0.3s;
+}
+#site-header.solid {
+  background: var(--ink);
+  border-bottom: 3px solid var(--rust);
+}
+
+.hdr-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 20px; background: var(--rust);
+  flex-shrink: 0; transition: background 0.2s; cursor: pointer;
+}
+.hdr-logo:hover { background: var(--rust2); }
+.hdr-logo img { height: 32px; filter: brightness(0) invert(1); }
+.hdr-logo-text {
+  font-family: var(--f-title); font-weight: 700;
+  font-size: 15px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--white); line-height: 1; white-space: nowrap;
+}
+.hdr-logo-sub {
+  display: block; font-family: var(--f-mono); font-size: 8px;
+  letter-spacing: 3px; color: rgba(255,255,255,0.6); margin-top: 3px;
+}
+
+.hdr-nav { display: flex; align-items: stretch; flex: 1; padding: 0 20px; }
+.hdr-nav a {
+  display: flex; align-items: center; padding: 0 16px;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--steel); border-right: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.15s; white-space: nowrap; position: relative;
+}
+.hdr-nav a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; background: var(--amber);
+  transform: scaleX(0); transition: transform 0.2s;
+}
+.hdr-nav a:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+.hdr-nav a:hover::after, .hdr-nav a.act::after { transform: scaleX(1); }
+.hdr-nav a.act { color: var(--cream); }
+
+.hdr-cta {
+  display: flex; align-items: center; padding: 0 24px;
+  background: var(--amber); color: var(--ink) !important;
+  font-family: var(--f-title) !important; font-weight: 700 !important;
+  font-size: 13px !important; letter-spacing: 3px !important;
+  text-transform: uppercase !important; transition: background 0.2s !important;
+  flex-shrink: 0; margin-left: auto; border-right: none !important;
+}
+.hdr-cta:hover { background: var(--amber2) !important; }
+.hdr-cta::after { display: none !important; }
+
+.hdr-burger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; padding: 0 18px; background: none; border: none;
+  cursor: crosshair; margin-left: auto;
+}
+.hdr-burger span { display: block; width: 24px; height: 2px; background: var(--cream); transition: all 0.3s; }
+
+/* Mobile menu */
+.mob-menu {
+  position: fixed; inset: 0; background: var(--ink2); z-index: 900;
+  display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.77,0,0.175,1);
+  padding: 80px 32px 48px; border-left: 5px solid var(--rust);
+}
+.mob-menu.open { transform: translateX(0); }
+.mob-menu-close {
+  position: absolute; top: 14px; right: 18px;
+  background: none; border: none; color: var(--steel);
+  font-size: 24px; cursor: crosshair; transition: color 0.2s; font-family: var(--f-mono);
+}
+.mob-menu-close:hover { color: var(--white); }
+.mob-menu a {
+  font-family: var(--f-title); font-weight: 700; font-size: 42px;
+  text-transform: uppercase; letter-spacing: 2px; color: var(--steel);
+  border-bottom: 1px solid rgba(255,255,255,0.06); padding: 13px 0;
+  transition: all 0.2s; display: block;
+}
+.mob-menu a:hover { color: var(--amber); padding-left: 12px; }
+.mob-menu .mob-cta { color: var(--rust); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 56px 1fr auto;
+  padding-top: 56px;
+  position: relative; overflow: hidden;
+}
+
+.hero-left {
+  grid-column: 1; grid-row: 2;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 48px 56px 48px; position: relative; z-index: 2;
+}
+
+.hero-right {
+  grid-column: 2; grid-row: 1 / 4;
+  background: var(--amber); position: relative;
+  overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
+}
+
+.hero-right-logo {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%; filter: brightness(0) opacity(0.12); z-index: 1;
+  animation: logoPulse 6s ease-in-out infinite;
+}
+@keyframes logoPulse {
+  0%,100%{opacity:0.12; transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:0.18; transform:translate(-50%,-50%) scale(1.04)}
+}
+
+.hero-right-tagline {
+  position: relative; z-index: 2;
+  padding: 32px 40px; background: var(--ink);
+}
+.hero-right-tagline p { font-family: var(--f-mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--steel); line-height: 2; }
+.hero-right-tagline strong { display: block; font-family: var(--f-title); font-weight: 600; font-size: 20px; letter-spacing: 3px; color: var(--amber); text-transform: uppercase; margin-top: 6px; }
+
+.hero-watermark {
+  position: absolute; bottom: -80px; left: -60px;
+  font-family: var(--f-display); font-size: clamp(300px,50vw,700px);
+  color: rgba(255,255,255,0.025); line-height: 1;
+  pointer-events: none; z-index: 1; user-select: none; letter-spacing: -20px;
+}
+
+.hero-year { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+.hero-year-line { display: block; height: 2px; width: 40px; background: var(--rust); }
+.hero-year-text { font-family: var(--f-mono); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); }
+
+.hero-h1 {
+  font-family: var(--f-display);
+  font-size: clamp(64px, 9vw, 136px);
+  line-height: 0.88; color: var(--white); text-transform: uppercase;
+  margin-bottom: 32px; position: relative; z-index: 2; letter-spacing: -2px;
+  animation: heroIn 1s ease both;
+}
+@keyframes heroIn {
+  from { opacity:0; transform: translateY(40px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+.hero-h1 .amber { color: var(--amber); }
+.hero-h1 .outline { -webkit-text-stroke: 2px var(--cream2); color: transparent; }
+
+.hero-desc {
+  font-family: var(--f-mono); font-size: 13px; color: var(--steel2);
+  max-width: 420px; line-height: 1.8; margin-bottom: 36px;
+  position: relative; z-index: 2;
+  animation: heroIn 1s 0.15s ease both;
+}
+
+.hero-actions {
+  display: flex; gap: var(--gap); flex-wrap: wrap;
+  position: relative; z-index: 2;
+  animation: heroIn 1s 0.25s ease both;
+}
+
+.hero-strip {
+  grid-column: 1; grid-row: 3;
+  background: var(--rust); display: flex;
+  align-items: stretch; overflow: hidden;
+  animation: heroIn 1s 0.4s ease both;
+}
+.hero-strip-item {
+  flex: 1; padding: 18px 24px;
+  border-right: 1px solid rgba(0,0,0,0.2);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.strip-num { font-family: var(--f-display); font-size: 32px; color: var(--white); line-height: 1; letter-spacing: -1px; }
+.strip-label { font-family: var(--f-mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 24px; font-family: var(--f-title); font-weight: 600;
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  border: none; cursor: crosshair; transition: all 0.15s; text-decoration: none;
+}
+.btn-rust { background: var(--rust); color: var(--white); }
+.btn-rust:hover { background: var(--rust2); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--amber); }
+.btn-amber { background: var(--amber); color: var(--ink); }
+.btn-amber:hover { background: var(--amber2); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--rust); }
+.btn-ghost { background: transparent; color: var(--cream); border: 2px solid rgba(255,255,255,0.2); }
+.btn-ghost:hover { border-color: var(--cream); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 rgba(255,255,255,0.15); }
+
+/* ── TAPE BAR ── */
+.tape-bar {
+  background: var(--amber); overflow: hidden;
+  border-top: var(--gap) solid var(--ink); border-bottom: var(--gap) solid var(--ink);
+}
+.tape-inner { display: flex; white-space: nowrap; animation: tape 30s linear infinite; }
+.tape-inner:hover { animation-play-state: paused; }
+@keyframes tape { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.tape-item {
+  display: inline-flex; align-items: center; gap: 16px;
+  padding: 14px 32px; border-right: 3px solid var(--ink);
+  font-family: var(--f-title); font-weight: 700;
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--ink);
+}
+.tape-item .dot { width: 8px; height: 8px; background: var(--rust); border-radius: 50%; flex-shrink: 0; }
+
+/* ── SECTIONS ── */
+.section-wrap { padding: 96px 48px; max-width: 1440px; margin: 0 auto; }
+.section-wrap.wide { max-width: none; }
+
+.sh { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 12px 24px; margin-bottom: 56px; }
+.sh-num { font-family: var(--f-display); font-size: clamp(80px,10vw,130px); color: rgba(255,255,255,0.06); line-height: 0.85; letter-spacing: -4px; grid-row: 1/3; padding-top: 4px; }
+.sh-tag { font-family: var(--f-mono); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); padding-top: 8px; }
+.sh-title { font-family: var(--f-display); font-size: clamp(36px,5vw,64px); color: var(--white); text-transform: uppercase; line-height: 0.9; letter-spacing: -1px; }
+
+/* ── NEWS ── */
+.news-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: auto auto; gap: var(--gap); margin-bottom: var(--gap); }
+.nc { background: var(--ink2); border: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s; cursor: crosshair; position: relative; overflow: hidden; }
+.nc:hover { transform: translate(-3px,-3px); border-color: rgba(255,255,255,0.15); }
+.nc.featured { grid-row: 1/3; background: var(--rust); border-color: var(--rust2); }
+.nc.featured:hover { box-shadow: 6px 6px 0 var(--amber); }
+.nc:not(.featured):hover { box-shadow: 4px 4px 0 var(--amber); }
+
+.nc-inner { flex: 1; display: flex; flex-direction: column; padding: 28px 28px 20px; }
+.nc-stamp {
+  display: inline-block; font-family: var(--f-mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.5);
+  margin-bottom: 20px; align-self: flex-start;
+}
+.nc.featured .nc-stamp { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.8); }
+.nc-title { font-family: var(--f-display); font-size: clamp(22px,3vw,34px); color: var(--white); text-transform: uppercase; line-height: 0.95; letter-spacing: -1px; margin-bottom: 14px; flex: 1; }
+.nc-text { font-family: var(--f-mono); font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.75; }
+.nc.featured .nc-text { color: rgba(255,255,255,0.75); }
+.nc-footer { padding: 14px 28px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; transition: background 0.2s; }
+.nc:hover .nc-footer { background: rgba(255,255,255,0.04); }
+.nc.featured:hover .nc-footer { background: rgba(0,0,0,0.15); }
+.nc-link { font-family: var(--f-title); font-weight: 600; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); transition: letter-spacing 0.2s; }
+.nc:hover .nc-link { letter-spacing: 4px; }
+.nc-arrow { font-size: 18px; color: var(--steel); transition: transform 0.2s; }
+.nc:hover .nc-arrow { transform: translate(4px,-4px); }
+
+.zp-cta { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 28px; padding: 32px 40px; background: var(--cream); margin-top: var(--gap); }
+.zp-icon { width: 80px; height: 80px; background: var(--amber); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; }
+.zp-title { font-family: var(--f-display); font-size: clamp(22px,3vw,36px); color: var(--ink); text-transform: uppercase; letter-spacing: -1px; line-height: 0.95; margin-bottom: 6px; }
+.zp-title span { color: var(--rust); }
+.zp-sub { font-family: var(--f-mono); font-size: 11px; color: var(--steel); letter-spacing: 1px; }
+
+/* ── CALENDAR ── */
+.cal-wrap { background: var(--ink2); border: 1px solid rgba(255,255,255,0.07); }
+.month-block { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.month-block:last-child { border-bottom: none; }
+.month-hdr { display: flex; align-items: center; gap: 20px; padding: 16px 28px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); cursor: pointer; transition: background 0.2s; }
+.month-hdr:hover { background: rgba(255,255,255,0.06); }
+.month-hdr-num { font-family: var(--f-display); font-size: 52px; color: rgba(255,255,255,0.08); line-height: 1; letter-spacing: -2px; min-width: 54px; text-align: right; }
+.month-hdr-name { font-family: var(--f-display); font-size: 28px; color: var(--cream); letter-spacing: 2px; text-transform: uppercase; flex: 1; }
+.month-hdr-count { font-family: var(--f-mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); background: rgba(255,255,255,0.05); padding: 4px 10px; }
+
+.event-list { display: flex; flex-direction: column; }
+.ev { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 20px; padding: 14px 28px; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s; }
+.ev:last-child { border-bottom: none; }
+.ev:hover { background: rgba(255,255,255,0.03); }
+.ev.is-highlight { background: rgba(232,160,32,0.06); }
+.ev.is-sraz { background: rgba(200,37,42,0.05); }
+.ev-date { font-family: var(--f-display); font-size: 22px; letter-spacing: -1px; color: var(--steel2); line-height: 1; text-align: center; }
+.ev.is-highlight .ev-date { color: var(--amber); }
+.ev.is-sraz .ev-date { color: var(--rust2); }
+.ev-date small { display: block; font-family: var(--f-mono); font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); margin-top: 2px; }
+.ev-name { font-family: var(--f-title); font-weight: 500; font-size: 15px; color: var(--cream); letter-spacing: 0.5px; }
+.ev-badge { font-family: var(--f-mono); font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 8px; border: 1px solid; white-space: nowrap; }
+.badge-sraz   { color: var(--rust2); border-color: rgba(200,37,42,0.35); }
+.badge-schůze { color: var(--amber); border-color: rgba(232,160,32,0.35); }
+.badge-výlet  { color: #6cd06c;      border-color: rgba(45,122,45,0.35); }
+.badge-aice   { color: #70a0f8;      border-color: rgba(80,120,240,0.3); }
+
+.cal-loading { display: flex; flex-direction: column; gap: 1px; }
+.skel { background: linear-gradient(90deg, var(--ink2) 25%, rgba(255,255,255,0.04) 50%, var(--ink2) 75%); background-size: 200% 100%; animation: shimmer 1.6s infinite; height: 54px; }
+@keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+
+/* ── INFO MOSAIC ── */
+.info-mosaic { display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: auto auto; gap: var(--gap); }
+.ib { background: var(--ink2); border: 1px solid rgba(255,255,255,0.07); padding: 32px 28px; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; cursor: crosshair; position: relative; }
+.ib::before { content: ''; position: absolute; top:0; left:0; width:100%; height:3px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
+.ib:hover::before { transform: scaleX(1); }
+.ib:hover { transform: translateY(-4px); box-shadow: 0 8px 0 var(--rust); }
+.ib.span2 { grid-column: span 2; }
+.ib-icon { font-size: 32px; margin-bottom: 20px; display: block; }
+.ib-title { font-family: var(--f-display); font-size: 24px; text-transform: uppercase; color: var(--white); letter-spacing: -0.5px; margin-bottom: 10px; }
+.ib-text { font-family: var(--f-mono); font-size: 12px; color: var(--steel); line-height: 1.8; flex: 1; }
+.ib-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-family: var(--f-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); transition: gap 0.2s; }
+.ib-link:hover { gap: 12px; }
+
+.friend-grid { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
+.friend-link { display: flex; align-items: center; justify-content: space-between; padding: 9px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); font-family: var(--f-mono); font-size: 11px; color: var(--steel2); transition: all 0.15s; }
+.friend-link:hover { background: rgba(232,160,32,0.08); border-color: rgba(232,160,32,0.2); color: var(--amber); transform: translateX(4px); }
+.friend-link span { font-size: 9px; color: var(--steel); }
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--gap); margin-bottom: var(--gap); }
+.contact-card { background: var(--ink2); border: 1px solid rgba(255,255,255,0.07); padding: 40px; display: flex; flex-direction: column; }
+.contact-card.amber-top { border-top: 4px solid var(--amber); }
+.contact-card.rust-top  { border-top: 4px solid var(--rust); }
+
+.contact-org-block { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+.contact-org-block img { height: 52px; filter: drop-shadow(0 0 12px rgba(232,160,32,0.25)); cursor: crosshair; }
+.contact-org-name { font-family: var(--f-display); font-size: 26px; color: var(--white); text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
+.contact-org-name span { display: block; font-family: var(--f-mono); font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--amber); margin-bottom: 4px; text-transform: uppercase; }
+
+.contact-sep { height: 1px; background: rgba(255,255,255,0.07); margin: 24px 0; }
+.contact-row { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+.contact-row:last-child { margin-bottom: 0; }
+.cr-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.cr-label { font-family: var(--f-mono); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--steel); margin-bottom: 3px; }
+.cr-value { font-family: var(--f-title); font-weight: 500; font-size: 15px; color: var(--cream); letter-spacing: 0.5px; }
+.cr-value a { color: var(--cream); transition: color 0.15s; }
+.cr-value a:hover { color: var(--amber); }
+
+.hours-table { width: 100%; border-collapse: collapse; }
+.hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.hours-table tr:last-child { border-bottom: none; }
+.hours-table td { padding: 13px 4px; font-family: var(--f-title); font-weight: 400; font-size: 15px; }
+.hours-table td:first-child { font-weight: 600; color: var(--cream2); padding-right: 24px; width: 45%; letter-spacing: 0.5px; }
+.hours-table td:last-child { font-family: var(--f-mono); color: var(--steel2); letter-spacing: 1px; }
+.hours-table tr.closed td { color: rgba(255,255,255,0.2); font-style: italic; }
+.hours-table tr.closed td:first-child { font-weight: 400; }
+
+.mech-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--gap); }
+.mech-card { background: var(--ink2); border: 1px solid rgba(255,255,255,0.07); padding: 28px 26px; display: flex; flex-direction: column; gap: 4px; transition: transform 0.2s, border-color 0.2s; }
+.mech-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
+.mech-card.note { border-left: 3px solid var(--amber); }
+.mech-card:not(.note) { border-left: 3px solid var(--rust); }
+.mech-icon { font-size: 24px; margin-bottom: 10px; }
+.mech-name { font-family: var(--f-display); font-size: 22px; text-transform: uppercase; color: var(--white); letter-spacing: -0.5px; margin-bottom: 6px; }
+.mech-desc { font-family: var(--f-mono); font-size: 12px; color: var(--steel); line-height: 1.7; flex: 1; }
+.mech-phone { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 10px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--cream); transition: all 0.15s; align-self: flex-start; }
+.mech-phone:hover { background: var(--rust); border-color: var(--rust); }
+
+/* ── FOOTER ── */
+footer { background: var(--ink2); border-top: 3px solid var(--rust); padding: 64px 48px 32px; }
+.footer-inner { max-width: 1440px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand-img { height: 40px; margin-bottom: 16px; filter: opacity(0.7); }
+.footer-brand-name { font-family: var(--f-display); font-size: 26px; color: var(--white); text-transform: uppercase; letter-spacing: -1px; margin-bottom: 12px; }
+.footer-brand-text { font-family: var(--f-mono); font-size: 12px; color: var(--steel); line-height: 1.85; max-width: 340px; }
+.footer-col-title { font-family: var(--f-display); font-size: 18px; text-transform: uppercase; letter-spacing: 1px; color: var(--amber); margin-bottom: 18px; }
+.footer-col a, .footer-col p { display: block; font-family: var(--f-mono); font-size: 12px; color: var(--steel); padding: 5px 0; transition: color 0.15s; line-height: 1.5; }
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-family: var(--f-mono); font-size: 11px; color: rgba(255,255,255,0.2); }
+.footer-bottom a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
+.footer-bottom a:hover { color: var(--cream); }
+
+/* ── MODAL ── */
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(6px); }
+.modal-box { background: var(--ink2); border: 1px solid rgba(255,255,255,0.1); border-top: 4px solid var(--amber); padding: 40px; max-width: 480px; width: 100%; position: relative; }
+.modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--steel); font-size: 22px; cursor: crosshair; transition: color 0.2s; font-family: var(--f-mono); }
+.modal-close:hover { color: var(--white); }
+.modal-title { font-family: var(--f-display); font-size: 28px; text-transform: uppercase; color: var(--white); letter-spacing: -1px; margin-bottom: 28px; }
+.modal-box input, .modal-box select { width: 100%; padding: 12px 14px; margin-bottom: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--cream); font-family: var(--f-mono); font-size: 13px; transition: border-color 0.2s; }
+.modal-box input:focus, .modal-box select:focus { outline: none; border-color: var(--amber); }
+.modal-box select option { background: var(--ink2); }
+
+/* ── SCROLL TOP ── */
+#scrollTop { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--rust); border: none; color: var(--white); font-size: 18px; font-family: var(--f-mono); cursor: crosshair; display: none; align-items: center; justify-content: center; z-index: 500; transition: all 0.2s; }
+#scrollTop:hover { background: var(--rust2); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--amber); }
+#scrollTop.show { display: flex; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.in { opacity:1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .news-grid { grid-template-columns: 1fr 1fr; }
+  .nc.featured { grid-column: 1/-1; grid-row: auto; }
+  .info-mosaic { grid-template-columns: 1fr 1fr; }
+  .ib.span2 { grid-column: span 1; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > div:first-child { grid-column: 1/-1; }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; grid-template-rows: 56px auto auto auto; }
+  .hero-left { grid-column:1; grid-row:2; padding: 40px 28px 36px; }
+  .hero-right { grid-column:1; grid-row:3; min-height: 220px; }
+  .hero-strip { grid-column:1; grid-row:4; }
+  .hero-right-logo { width: 40%; }
+  .hdr-nav { display: none; }
+  .hdr-cta { display: none; }
+  .hdr-burger { display: flex; }
+  .section-wrap { padding: 64px 24px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .mech-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .hero-h1 { font-size: 58px; }
+  .hero-left { padding: 32px 20px; }
+  .hero-strip { flex-direction: column; }
+  .hero-strip-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.2); }
+  .news-grid { grid-template-columns: 1fr; }
+  .nc.featured { grid-column: auto; }
+  .info-mosaic { grid-template-columns: 1fr; }
+  .ib.span2 { grid-column: auto; }
+  .mech-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid > div:first-child { grid-column: auto; }
+  .section-wrap { padding: 48px 20px; }
+  .zp-cta { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px; }
+  .ev { grid-template-columns: 60px 1fr; }
+  .ev-badge { display: none; }
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <img src="logo amk.png" alt="Trabant klub Plzeň">
-      <div class="logo-text">
-        Trabant klub
-        <span class="logo-sub">Plzeň · od 1990</span>
-      </div>
-    </a>
-    <nav>
-      <a href="#aktuality" class="active">Aktuality</a>
-      <a href="#oteviraci-doba">Otevírací doba</a>
-      <a href="#akce">Akce a výlety</a>
-      <a href="#fotogalerie">Fotogalerie</a>
-      <a href="#forum">Fórum</a>
-      <a href="#kontakt" class="nav-cta">Kontakt</a>
-    </nav>
-    <button class="hamburger" onclick="openMenu()" aria-label="Otevřít menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<!-- HEADER -->
+<header id="site-header">
+  <a href="#" class="hdr-logo">
+    <img src="logo_amk.png" alt="AMK">
+    <div class="hdr-logo-text">AMK Trabant<span class="hdr-logo-sub">Plzeň · est. 1990</span></div>
+  </a>
+  <nav class="hdr-nav">
+    <a href="#aktuality">Aktuality</a>
+    <a href="#akce">Akce 2026</a>
+    <a href="#o-nas">O nás</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <a href="#kontakt" class="hdr-cta">Napište nám</a>
+  <button class="hdr-burger" onclick="openMob()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu-close" onclick="closeMenu()">×</button>
-  <a href="#aktuality" onclick="closeMenu()">Aktuality</a>
-  <a href="#oteviraci-doba" onclick="closeMenu()">Otevírací doba</a>
-  <a href="#akce" onclick="closeMenu()">Akce a výlety</a>
-  <a href="#fotogalerie" onclick="closeMenu()">Fotogalerie</a>
-  <a href="#forum" onclick="closeMenu()">Fórum</a>
-  <a href="#kontakt" class="mob-cta" onclick="closeMenu()">Kontakt</a>
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-menu-close" onclick="closeMob()">✕</button>
+  <a href="#aktuality" onclick="closeMob()">Aktuality</a>
+  <a href="#akce" onclick="closeMob()">Akce 2026</a>
+  <a href="#o-nas" onclick="closeMob()">O nás</a>
+  <a href="#kontakt" class="mob-cta" onclick="closeMob()">Kontakt</a>
 </div>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">🏁 Trabantklub Plzeň</div>
-    <h1>Prdíme<br><span>společně</span><br>od roku 1990</h1>
-    <p class="hero-desc">Jsme nadšenci do trabantů z Plzně a okolí. Pravidelné srazy, výlety, opravna, kamarádství — to jsme my.</p>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-watermark">T</div>
+
+  <div class="hero-left">
+    <div class="hero-year">
+      <span class="hero-year-line"></span>
+      <span class="hero-year-text">AMK Trabant Plzeň z.s. &nbsp;·&nbsp; Klub nadšenců</span>
+    </div>
+    <h1 class="hero-h1">
+      Prdíme<br>
+      <span class="amber">společně</span><br>
+      <span class="outline">od 1990</span>
+    </h1>
+    <p class="hero-desc">
+      Jsme spolek trabantistů z Plzně a okolí.<br>
+      Srazy, výlety po Čechách i Evropě,<br>
+      vlastní opravna, kamarádství bez hranic.
+    </p>
     <div class="hero-actions">
-      <a href="#aktuality" class="btn btn-primary">📰 Co je nového</a>
-      <a href="#kontakt" class="btn btn-outline">📞 Kontaktujte nás</a>
+      <a href="#aktuality" class="btn btn-amber">📰 Co je nového</a>
+      <a href="#akce" class="btn btn-rust">🏁 Akce 2026</a>
+      <a href="#kontakt" class="btn btn-ghost">📞 Kontakt</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img src="logo_amk.png" alt="" class="hero-right-logo" aria-hidden="true">
+    <div class="hero-right-tagline">
+      <p>Trabantklub Plzeň</p>
+      <strong>Legenda žije dál</strong>
+    </div>
+  </div>
+
+  <div class="hero-strip">
+    <div class="hero-strip-item">
+      <span class="strip-num">35+</span>
+      <span class="strip-label">Let existence</span>
+    </div>
+    <div class="hero-strip-item">
+      <span class="strip-num">100+</span>
+      <span class="strip-label">Členů</span>
+    </div>
+    <div class="hero-strip-item">
+      <span class="strip-num">50+</span>
+      <span class="strip-label">Akcí ročně</span>
+    </div>
+    <div class="hero-strip-item">
+      <span class="strip-num">∞</span>
+      <span class="strip-label">Zábavy</span>
     </div>
   </div>
 </section>
 
-<div class="hours-banner" id="oteviraci-doba">
-  <div class="hours-inner">
-    <div class="hours-label">⏰ Kancelář &amp; prodejna ND — provozní doba</div>
-    <div class="hours-grid">
-      <div class="hours-item">ÚT <span>13–18 hod</span></div>
-      <div class="hours-item">ST <span>9–12 · 13–18 hod</span></div>
-      <div class="hours-item">ČT <span>9–13 hod</span></div>
-      <div class="hours-item">PO · PÁ–NE <span>zavřeno</span></div>
+<!-- TAPE BAR -->
+<div class="tape-bar" id="oteviraci-doba">
+  <div class="tape-inner">
+    <div class="tape-item"><span class="dot"></span>Kancelář &amp; prodejna ND</div>
+    <div class="tape-item"><span class="dot"></span>Úterý 13:00–18:00</div>
+    <div class="tape-item"><span class="dot"></span>Středa 9:00–12:00 · 13:00–18:00</div>
+    <div class="tape-item"><span class="dot"></span>Čtvrtek 9:00–13:00</div>
+    <div class="tape-item"><span class="dot"></span>Pondělí — Zavřeno</div>
+    <div class="tape-item"><span class="dot"></span>Pátek–Neděle — Zavřeno</div>
+    <div class="tape-item"><span class="dot"></span>Úslavská 339/2, Plzeň</div>
+    <div class="tape-item"><span class="dot"></span>377 323 689</div>
+    <div class="tape-item"><span class="dot"></span>Kancelář &amp; prodejna ND</div>
+    <div class="tape-item"><span class="dot"></span>Úterý 13:00–18:00</div>
+    <div class="tape-item"><span class="dot"></span>Středa 9:00–12:00 · 13:00–18:00</div>
+    <div class="tape-item"><span class="dot"></span>Čtvrtek 9:00–13:00</div>
+    <div class="tape-item"><span class="dot"></span>Pondělí — Zavřeno</div>
+    <div class="tape-item"><span class="dot"></span>Pátek–Neděle — Zavřeno</div>
+    <div class="tape-item"><span class="dot"></span>Úslavská 339/2, Plzeň</div>
+    <div class="tape-item"><span class="dot"></span>377 323 689</div>
+  </div>
+</div>
+
+<!-- AKTUALITY -->
+<div class="section-wrap" id="aktuality">
+  <div class="sh reveal">
+    <div class="sh-num">01</div>
+    <div class="sh-tag">Novinky z klubu</div>
+    <div class="sh-title">Aktuality</div>
+  </div>
+
+  <div class="news-grid">
+    <div class="nc featured reveal">
+      <div class="nc-inner">
+        <span class="nc-stamp">2026 · Zpravodaj</span>
+        <div class="nc-title">Zpravodaj 1/2026 je tady!</div>
+        <p class="nc-text">Aktuální číslo klubového zpravodaje ke stažení zdarma. Novinky, výsledky akcí, reportáže z výletů i tipy na opravy a seřizování motoru.</p>
+      </div>
+      <div class="nc-footer">
+        <a href="https://drive.google.com/file/d/11vZjb55RIudMCnPz6m1ji_4cfNfA27dz/view?usp=drive_link" target="_blank" class="nc-link">Stáhnout PDF</a>
+        <span class="nc-arrow">↗</span>
+      </div>
+    </div>
+    <div class="nc reveal">
+      <div class="nc-inner">
+        <span class="nc-stamp">Kancelář &amp; ND</span>
+        <div class="nc-title">Provozní doba</div>
+        <p class="nc-text">Út 13–18 · St 9–12 a 13–18 · Čt 9–13. Pondělí, pátek–neděle zavřeno.</p>
+      </div>
+      <div class="nc-footer">
+        <a href="#kontakt" class="nc-link">Více v kontaktech</a>
+        <span class="nc-arrow">↗</span>
+      </div>
+    </div>
+    <div class="nc reveal">
+      <div class="nc-inner">
+        <span class="nc-stamp">Kalendář</span>
+        <div class="nc-title">Výlety &amp; Srazy 2026</div>
+        <p class="nc-text">Bohatý program — srazy, výlety, mezinárodní akce A.I.C.E. a členské schůze.</p>
+      </div>
+      <div class="nc-footer">
+        <a href="#akce" class="nc-link">Prohlédnout</a>
+        <span class="nc-arrow">↗</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="zp-cta reveal">
+    <div class="zp-icon">📰</div>
+    <div>
+      <div class="zp-title">Zpravodaj <span>1/2026</span></div>
+      <div class="zp-sub">novinky · reportáže · opravy · tipy</div>
+    </div>
+    <a href="https://drive.google.com/file/d/11vZjb55RIudMCnPz6m1ji_4cfNfA27dz/view?usp=drive_link" target="_blank" class="btn btn-rust">⬇ Stáhnout</a>
+  </div>
+</div>
+
+<!-- AKCE -->
+<div style="background:var(--ink2)">
+  <div class="section-wrap" id="akce">
+    <div class="sh reveal">
+      <div class="sh-num">02</div>
+      <div class="sh-tag">Výlety · Srazy · Schůze</div>
+      <div class="sh-title">Kalendář akcí 2026</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;" class="reveal">
+      <span class="ev-badge badge-sraz" style="font-size:10px;padding:4px 10px;">🏁 Sraz / akce</span>
+      <span class="ev-badge badge-schůze" style="font-size:10px;padding:4px 10px;">📋 Schůze</span>
+      <span class="ev-badge badge-výlet" style="font-size:10px;padding:4px 10px;">🗺️ Výlet</span>
+      <span class="ev-badge badge-aice" style="font-size:10px;padding:4px 10px;">🌍 A.I.C.E.</span>
+    </div>
+    <div class="cal-wrap" id="calendar-container">
+      <div class="cal-loading">
+        <div class="skel"></div>
+        <div class="skel" style="opacity:.7"></div>
+        <div class="skel" style="opacity:.5"></div>
+        <div class="skel" style="opacity:.35"></div>
+      </div>
     </div>
   </div>
 </div>
 
-<main>
-
-  <section id="aktuality">
-    <div class="section-header reveal">
-      <div class="section-tag">Novinky</div>
-      <div class="section-title">Aktuality</div>
+<!-- O NÁS -->
+<div class="section-wrap" id="o-nas">
+  <div class="sh reveal">
+    <div class="sh-num">03</div>
+    <div class="sh-tag">Vše na jednom místě</div>
+    <div class="sh-title">Co u nás najdete</div>
+  </div>
+  <div class="info-mosaic">
+    <div class="ib reveal">
+      <span class="ib-icon">🚗</span>
+      <div class="ib-title">O nás</div>
+      <p class="ib-text">Jsme spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme kamarádství, sdílíme zkušenosti, opravujeme a jezdíme!</p>
+      <a href="#" class="ib-link">Více o klubu →</a>
     </div>
-
-    <div class="news-grid">
-
-      <div class="news-card highlight reveal">
-        <div class="news-card-header">
-          <div class="news-card-icon">📋</div>
-          <div class="news-card-date">2026 · Zpravodaj</div>
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-title">Zpravodaj 1/2026 je tady!</div>
-          <p class="news-card-text">Aktuální číslo klubového zpravodaje si můžete stáhnout zdarma. Najdete tam novinky, výsledky akcí i tipy na opravy.</p>
-        </div>
-        <a href="https://drive.google.com/file/d/11vZjb55RIudMCnPz6m1ji_4cfNfA27dz/view?usp=drive_link" target="_blank" class="news-card-link">
-          📄 Stáhnout zpravodaj →
-        </a>
+    <div class="ib reveal">
+      <span class="ib-icon">📸</span>
+      <div class="ib-title">Fotogalerie</div>
+      <p class="ib-text">Stovky fotek ze srazů, výletů a opravování. Podívejte se, co se u nás děje!</p>
+      <a href="http://trabantakce.rajce.idnes.cz" target="_blank" class="ib-link">Otevřít galerii →</a>
+    </div>
+    <div class="ib reveal">
+      <span class="ib-icon">💬</span>
+      <div class="ib-title">Diskuzní fórum</div>
+      <p class="ib-text">Ptejte se, raďte si, sdílejte zkušenosti s opravami i cestami na našem fóru.</p>
+      <a href="#" class="ib-link">Do fóra →</a>
+    </div>
+    <div class="ib reveal">
+      <span class="ib-icon">🔧</span>
+      <div class="ib-title">Servis &amp; ND</div>
+      <p class="ib-text">Vlastní dílna, zkušení mechanici a prodej náhradních dílů. Poradíme s každou prdlavkou.</p>
+      <a href="#kontakt" class="ib-link">Kontakt na mechaniky →</a>
+    </div>
+    <div class="ib span2 reveal">
+      <span class="ib-icon">🤝</span>
+      <div class="ib-title">Naši přátelé</div>
+      <div class="friend-grid">
+        <a href="http://www.muzeumlobzy.cz" class="friend-link" target="_blank">Příběhy dvoutaktů<span>muzeumlobzy.cz ↗</span></a>
+        <a href="http://www.trabantmuzeum.cz" class="friend-link" target="_blank">Trabant Muzeum Motol<span>trabantmuzeum.cz ↗</span></a>
+        <a href="http://www.muzeumtrabantu.cz" class="friend-link" target="_blank">Muzeum N. Ves pod Pleší<span>muzeumtrabantu.cz ↗</span></a>
+        <a href="http://www.krtekracingteam.cz" class="friend-link" target="_blank">Krtek Racing Team<span>krtekracingteam.cz ↗</span></a>
+        <a href="http://www.trabantem.cz" class="friend-link" target="_blank">Půjčovna Trabantů<span>trabantem.cz ↗</span></a>
+        <a href="http://www.trabantshop.cz" class="friend-link" target="_blank">Trabant shop V. Kytka<span>trabantshop.cz ↗</span></a>
       </div>
+    </div>
+  </div>
+</div>
 
-      <div class="news-card reveal">
-        <div class="news-card-header">
-          <div class="news-card-icon">🕐</div>
-          <div class="news-card-date">Kancelář &amp; prodejna ND</div>
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-title">Provozní doba</div>
-          <p class="news-card-text">Út: 13–18 hod &nbsp;·&nbsp; St: 9–12 a 13–18 hod &nbsp;·&nbsp; Čt: 9–13 hod. Pondělí a pátek–neděle zavřeno.</p>
-        </div>
-        <a href="#kontakt" class="news-card-link">
-          Více v kontaktech →
-        </a>
-      </div>
-
-      <div class="news-card reveal">
-        <div class="news-card-header">
-          <div class="news-card-icon">🗓️</div>
-          <div class="news-card-date">Kalendář akcí</div>
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-title">Výlety & Srazy 2026</div>
-          <p class="news-card-text">Chystáme bohatý program na letošní sezónu. Sledujte náš kalendář akcí a nenechte si ujít srazy a výlety s přáteli trabantisty.</p>
-        </div>
-        <a href="#akce" class="news-card-link">
-          Prohlédnout kalendář →
-        </a>
-      </div>
-
+<!-- KONTAKT -->
+<div style="background:var(--ink2)">
+  <div class="section-wrap" id="kontakt">
+    <div class="sh reveal">
+      <div class="sh-num">04</div>
+      <div class="sh-tag">Přijďte, zavolejte nebo napište</div>
+      <div class="sh-title">Kontakt</div>
     </div>
 
-    <div class="zpravodaj-cta reveal">
-      <div class="zpravodaj-icon">📰</div>
-      <div class="zpravodaj-body">
-        <div class="zpravodaj-title">Zpravodaj <span>1/2026</span></div>
-        <p class="zpravodaj-text">Novinky z klubu, reportáže ze srazů, tipy na opravy a dílenské rady přímo pro vás.</p>
-      </div>
-      <a href="https://drive.google.com/file/d/11vZjb55RIudMCnPz6m1ji_4cfNfA27dz/view?usp=drive_link" target="_blank" class="btn btn-primary">
-        ⬇️ Stáhnout PDF
-      </a>
-    </div>
-
-  </section>
-
-  <section id="akce" class="calendar-section">
-    <div class="section-header reveal">
-      <div class="section-tag">Výlety · Srazy · Schůze</div>
-      <div class="section-title">Kalendář akcí 2026</div>
-    </div>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;" class="reveal">
-      <span class="event-badge badge-sraz">🏁 Sraz / akce</span>
-      <span class="event-badge badge-schůze">📋 Členská schůze</span>
-      <span class="event-badge badge-výlet">🗺️ Výlet</span>
-      <span class="event-badge badge-aice">🌍 A.I.C.E.</span>
-    </div>
-
-    <div id="calendar-container">
-        <p style="text-align:center; padding: 40px; color: var(--gray);">Načítám aktuální akce...</p>
-    </div>
-
-  </section>
-
-  <section id="o-nas">
-    <div class="section-header reveal">
-      <div class="section-tag">Vše na jednom místě</div>
-      <div class="section-title">Co u nás najdete</div>
-    </div>
-    <div class="info-grid">
-
-      <div class="info-block reveal">
-        <div class="info-block-icon">🚗</div>
-        <div class="info-block-title">O nás</div>
-        <p class="info-block-text">Jsme spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme kamarádství, sdílíme zkušenosti, opravujeme a jezdíme!</p>
-        <a href="#" class="info-block-link">Více o klubu →</a>
-      </div>
-
-      <div class="info-block reveal">
-        <div class="info-block-icon">📸</div>
-        <div class="info-block-title">Fotogalerie</div>
-        <p class="info-block-text">Stovky fotek ze srazů, výletů a opravování. Podívejte se, co se u nás děje!</p>
-        <a href="http://trabantakce.rajce.idnes.cz" target="_blank" class="info-block-link">Otevřít galerii →</a>
-      </div>
-
-      <div class="info-block reveal">
-        <div class="info-block-icon">💬</div>
-        <div class="info-block-title">Diskuzní fórum</div>
-        <p class="info-block-text">Ptejte se, raďte si, sdílejte zkušenosti s opravami i cestami na našem fóru.</p>
-        <a href="#" class="info-block-link">Do fóra →</a>
-      </div>
-
-      <div class="info-block reveal">
-        <div class="info-block-icon">🤝</div>
-        <div class="info-block-title">Naši přátelé</div>
-        
-        <div class="friends-list">
-            <a href="http://www.muzeumlobzy.cz" class="friend-item" target="_blank">
-                <div class="friend-body">
-                    <span class="friend-name">Příběhy dvoutaktů</span>
-                    <span class="friend-url">muzeumlobzy.cz</span>
-                </div>
-            </a>
-            <a href="http://www.trabantmuzeum.cz" class="friend-item" target="_blank">
-                <div class="friend-body">
-                    <span class="friend-name">Trabant Muzeum Motol</span>
-                    <span class="friend-url">trabantmuzeum.cz</span>
-                </div>
-            </a>
-            <a href="http://www.muzeumtrabantu.cz" class="friend-item" target="_blank">
-                <div class="friend-body">
-                    <span class="friend-name">Muzeum N. Ves pod Pleší</span>
-                    <span class="friend-url">muzeumtrabantu.cz</span>
-                </div>
-            </a>
-            <a href="http://www.krtekracingteam.cz" class="friend-item" target="_blank">
-                <div class="friend-body">
-                    <span class="friend-name">Krtek Racing Team</span>
-                    <span class="friend-url">krtekracingteam.cz</span>
-                </div>
-            </a>
-            <a href="http://www.trabantem.cz" class="friend-item" target="_blank">
-                <div class="friend-body">
-                    <span class="friend-name">Půjčovna Trabantů</span>
-                    <span class="friend-url">trabantem.cz</span>
-                </div>
-            </a>
-            <a href="http://www.trabantshop.cz" class="friend-item" target="_blank">
-                <div class="friend-body">
-                    <span class="friend-name">Trabant shop V. Kytka</span>
-                    <span class="friend-url">trabantshop.cz</span>
-                </div>
-            </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="kontakt">
-    <div class="section-header reveal">
-      <div class="section-tag">Přijďte, zavolejte nebo napište</div>
-      <div class="section-title">Kontakt</div>
-    </div>
-
-    <div class="contact-main reveal">
-      <div class="contact-main-left">
-        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-           <img src="logo amk.png" alt="Logo" style="height: 60px; cursor: pointer;" id="adminTrigger">
-           <div class="contact-org" style="margin-bottom: 0;">AMK Trabant Plzeň z.s.</div>
-        </div>
-        <div class="contact-address">
-          <span>📍</span>
-          <div>
-            Úslavská 339/2<br>
-            326 00 Plzeň<br>
-            Česká republika
+    <div class="contact-grid reveal">
+      <div class="contact-card amber-top">
+        <div class="contact-org-block">
+          <img src="logo_amk.png" alt="Logo" id="adminTrigger">
+          <div class="contact-org-name">
+            <span>Spolek zapsaný</span>
+            AMK Trabant<br>Plzeň z.s.
           </div>
         </div>
+        <div class="contact-sep"></div>
         <div class="contact-row">
-          <span>📞</span>
-          <a href="tel:+420377323689">377 323 689</a>
+          <div class="cr-icon">📍</div>
+          <div><div class="cr-label">Adresa</div><div class="cr-value">Úslavská 339/2, 326 00 Plzeň</div></div>
         </div>
         <div class="contact-row">
-          <span>✉️</span>
-          <a href="mailto:amk@trabantklub.cz">amk@trabantklub.cz</a>
+          <div class="cr-icon">📞</div>
+          <div><div class="cr-label">Telefon</div><div class="cr-value"><a href="tel:+420377323689">377 323 689</a></div></div>
         </div>
         <div class="contact-row">
-          <span>🌐</span>
-          <a href="https://www.trabantklub.cz" target="_blank">www.trabantklub.cz</a>
+          <div class="cr-icon">✉️</div>
+          <div><div class="cr-label">E-mail</div><div class="cr-value"><a href="mailto:amk@trabantklub.cz">amk@trabantklub.cz</a></div></div>
         </div>
         <div class="contact-row">
-          <span>🏛️</span>
-          <div>
-            <div style="font-size:13px;color:var(--gray);margin-bottom:2px;">IČO</div>
-            <strong style="color:white;">601355887</strong>
-          </div>
+          <div class="cr-icon">🌐</div>
+          <div><div class="cr-label">Web</div><div class="cr-value"><a href="https://www.trabantklub.cz" target="_blank">www.trabantklub.cz</a></div></div>
         </div>
         <div class="contact-row">
-          <span>📬</span>
-          <div>
-            <div style="font-size:13px;color:var(--gray);margin-bottom:2px;">ID datové schránky</div>
-            <strong style="color:white;">pkzw25s</strong>
-          </div>
+          <div class="cr-icon">🏛️</div>
+          <div><div class="cr-label">IČO</div><div class="cr-value">601355887</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon">📬</div>
+          <div><div class="cr-label">Datová schránka</div><div class="cr-value">pkzw25s</div></div>
         </div>
       </div>
 
-      <div class="contact-main-right">
-        <div class="contact-hours-block">
-          <div class="contact-hours-title">🏢 Kancelář &amp; prodejna náhradních dílů</div>
-          <table class="contact-hours-table">
-            <tr><td>Úterý</td><td>13:00 – 18:00</td></tr>
-            <tr><td>Středa</td><td>9:00 – 12:00 &nbsp;·&nbsp; 13:00 – 18:00</td></tr>
-            <tr><td>Čtvrtek</td><td>9:00 – 13:00</td></tr>
-            <tr class="closed"><td>Pondělí, Pátek – Neděle</td><td>zavřeno</td></tr>
-          </table>
-        </div>
+      <div class="contact-card rust-top">
+        <div class="cr-label" style="font-size:11px;margin-bottom:20px;letter-spacing:3px;">🏢 Kancelář &amp; prodejna náhradních dílů</div>
+        <table class="hours-table">
+          <tr><td>Úterý</td><td>13:00 – 18:00</td></tr>
+          <tr><td>Středa</td><td>9:00–12:00 · 13:00–18:00</td></tr>
+          <tr><td>Čtvrtek</td><td>9:00 – 13:00</td></tr>
+          <tr class="closed"><td>Po, Pá–Ne</td><td>zavřeno</td></tr>
+        </table>
       </div>
     </div>
 
-    <div class="section-header reveal" style="margin-top:48px;">
-      <div class="section-tag">Opravy &amp; servis</div>
-      <div class="section-title">Mechanici</div>
+    <div class="sh reveal" style="margin-top:64px;">
+      <div class="sh-num" style="font-size:80px;">05</div>
+      <div class="sh-tag">Opravy &amp; servis</div>
+      <div class="sh-title">Mechanici</div>
     </div>
 
-    <div class="mechanic-grid reveal">
-
-      <div class="mechanic-card">
-        <div class="mechanic-icon">🔧</div>
-        <div class="mechanic-body">
-          <div class="mechanic-name">Pan Vachtl</div>
-          <div class="mechanic-desc">Servisní poradenství a informace k opravám</div>
-          <a href="tel:+420601355887" class="mechanic-phone">📞 601 355 887</a>
-        </div>
+    <div class="mech-grid reveal">
+      <div class="mech-card">
+        <span class="mech-icon">🔧</span>
+        <div class="mech-name">Pan Vachtl</div>
+        <div class="mech-desc">Servisní poradenství a informace k opravám</div>
+        <a href="tel:+420601355887" class="mech-phone">📞 601 355 887</a>
       </div>
-
-      <div class="mechanic-card">
-        <div class="mechanic-icon">🏗️</div>
-        <div class="mechanic-body">
-          <div class="mechanic-name">Pan Fryček</div>
-          <div class="mechanic-desc">Dílna trabantklubu — Úslavská 2, Plzeň</div>
-          <a href="tel:+420792303927" class="mechanic-phone">📞 792 303 927</a>
-        </div>
+      <div class="mech-card">
+        <span class="mech-icon">🏗️</span>
+        <div class="mech-name">Pan Fryček</div>
+        <div class="mech-desc">Dílna trabantklubu — Úslavská 2, Plzeň</div>
+        <a href="tel:+420792303927" class="mech-phone">📞 792 303 927</a>
       </div>
-
-      <div class="mechanic-card mechanic-note">
-        <div class="mechanic-icon">🚗</div>
-        <div class="mechanic-body">
-          <div class="mechanic-name">Dílna Kostelec u Nadryb</div>
-          <div class="mechanic-desc">Opravy v Kostelci u Nadryb s možností vyzvednutí vozidla přímo v Plzni.</div>
-        </div>
+      <div class="mech-card note">
+        <span class="mech-icon">🚗</span>
+        <div class="mech-name">Dílna Kostelec</div>
+        <div class="mech-desc">Opravy v Kostelci u Nadryb s možností vyzvednutí vozidla přímo v Plzni.</div>
       </div>
-
     </div>
+  </div>
+</div>
 
-  </section>
-
-</main>
-
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-title">AMK Trabant Plzeň z.s.</div>
+        <img src="logo_amk.png" alt="AMK" class="footer-brand-img">
+        <div class="footer-brand-name">AMK Trabant Plzeň z.s.</div>
         <p class="footer-brand-text">Spolek nadšenců do trabantů z Plzně a okolí. Pěstujeme přátelství, sdílíme znalosti a udržujeme legendu dvoutaktního motoru při životě od roku 1990.</p>
-        <p class="footer-brand-text" style="margin-top:10px;">
+        <p class="footer-brand-text" style="margin-top:14px;">
           📍 Úslavská 339/2, 326 00 Plzeň<br>
-          📞 <a href="tel:+420377323689" style="color:#888;">377 323 689</a><br>
-          ✉️ <a href="mailto:amk@trabantklub.cz" style="color:#888;">amk@trabantklub.cz</a><br>
-          📬 Datová schránka: pkzw25s
+          📞 <a href="tel:+420377323689" style="color:var(--steel);">377 323 689</a><br>
+          ✉️ <a href="mailto:amk@trabantklub.cz" style="color:var(--steel);">amk@trabantklub.cz</a>
         </p>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Navigace</div>
         <a href="#aktuality">Aktuality</a>
-        <a href="#akce">Kalendář akcí</a>
+        <a href="#oteviraci-doba">Otevírací doba</a>
         <a href="http://trabantakce.rajce.idnes.cz" target="_blank">Fotogalerie</a>
-        <a href="#forum">Diskuzní fórum</a>
+        <a href="#o-nas">O nás</a>
         <a href="#kontakt">Kontakt</a>
       </div>
       <div class="footer-col">
@@ -1338,187 +830,138 @@
         <p>Út: 13:00 – 18:00</p>
         <p>St: 9–12 · 13–18 hod</p>
         <p>Čt: 9:00 – 13:00</p>
+        <p style="color:rgba(255,255,255,0.18);font-style:italic;">Po, Pá–Ne: zavřeno</p>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 AMK Trabant Plzeň z.s. — IČO: 601355887 · Vyrobeno s láskou k prdlavkám 🚗</p>
-      <p><a href="https://www.trabantklub.cz" style="color:#666;">trabantklub.cz</a></p>
+      <p><a href="https://www.trabantklub.cz">trabantklub.cz</a></p>
     </div>
   </div>
 </footer>
 
-<div class="modal" id="adminModal">
-    <div class="modal-content">
-        <span class="modal-close" onclick="document.getElementById('adminModal').style.display='none'">×</span>
-        <h2 class="section-title" style="font-size: 32px; margin-bottom: 20px;">Správa kalendáře</h2>
-        
-        <div id="adminLogin">
-            <input type="password" id="adminPass" placeholder="Heslo pro úpravy">
-            <button class="btn btn-primary" onclick="checkAdmin()">Vstoupit</button>
-        </div>
-
-        <form id="adminForm" class="admin-form" style="display:none;">
-            <input type="date" id="eventDate" required>
-            <input type="text" id="eventTitle" placeholder="Název akce" required>
-            <select id="eventType">
-                <option value="sraz">Sraz / akce</option>
-                <option value="schůze">Členská schůze</option>
-                <option value="výlet">Výlet</option>
-                <option value="aice">A.I.C.E.</option>
-            </select>
-            <label style="display:block; margin-bottom: 12px; font-size: 14px;">
-                <input type="checkbox" id="eventHighlight" style="width:auto; margin-bottom:0;"> Zvýraznit akci?
-            </label>
-            <button type="submit" class="btn btn-primary" style="width:100%;">Přidat do tabulky</button>
-        </form>
+<!-- ADMIN MODAL -->
+<div class="modal-bg" id="adminModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('adminModal').style.display='none'">✕</button>
+    <div class="modal-title">Správa kalendáře</div>
+    <div id="adminLogin">
+      <input type="password" id="adminPass" placeholder="Heslo pro úpravy">
+      <button class="btn btn-amber" onclick="checkAdmin()" style="width:100%;justify-content:center;margin-top:4px;">Vstoupit</button>
     </div>
+    <form id="adminForm" style="display:none;">
+      <input type="date" id="eventDate" required>
+      <input type="text" id="eventTitle" placeholder="Název akce" required>
+      <select id="eventType">
+        <option value="sraz">Sraz / akce</option>
+        <option value="schůze">Členská schůze</option>
+        <option value="výlet">Výlet</option>
+        <option value="aice">A.I.C.E.</option>
+      </select>
+      <label style="display:flex;align-items:center;gap:10px;margin-bottom:14px;font-family:var(--f-mono);font-size:12px;color:var(--steel);cursor:crosshair;">
+        <input type="checkbox" id="eventHighlight" style="width:auto;accent-color:var(--amber);">
+        Zvýraznit akci?
+      </label>
+      <button type="submit" class="btn btn-rust" style="width:100%;justify-content:center;">Přidat do tabulky</button>
+    </form>
+  </div>
 </div>
 
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nahoru">↑</button>
 
 <script>
-  // NASTAVENÍ GOOGLE SHEETS - POUŽITA VAŠE AKTIVNÍ URL
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyhX3pHDz2zt_RLG4HjjDDQorSga0x-GfP-ibMDMYlmNmxNmYBFzE0V5lHSXPLoohQLHQ/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyhX3pHDz2zt_RLG4HjjDDQorSga0x-GfP-ibMDMYlmNmxNmYBFzE0V5lHSXPLoohQLHQ/exec';
+const MONTHS = ["Leden","Únor","Březen","Duben","Květen","Červen","Červenec","Srpen","Září","Říjen","Listopad","Prosinec"];
 
-  // Načítání kalendáře
-  async function loadCalendar() {
-    const container = document.getElementById('calendar-container');
-    try {
-      const response = await fetch(scriptURL);
-      const data = await response.json();
-      
-      if (data.length === 0) {
-          container.innerHTML = '<p>Žádné plánované akce.</p>';
-          return;
+// Header
+const hdr = document.getElementById('site-header');
+window.addEventListener('scroll', () => { hdr.classList.toggle('solid', window.scrollY > 20); }, {passive:true});
+
+// Mobile menu
+function openMob() { document.getElementById('mobMenu').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow=''; }
+
+// Nav active
+const navLinks = document.querySelectorAll('.hdr-nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('[id]').forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('act', a.getAttribute('href') === '#'+cur));
+}, {passive:true});
+
+// Scroll top
+const stBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => { stBtn.classList.toggle('show', window.scrollY > 500); }, {passive:true});
+
+// Calendar
+async function loadCalendar() {
+  const c = document.getElementById('calendar-container');
+  try {
+    const data = await (await fetch(SHEET_URL)).json();
+    if (!data.length) { c.innerHTML = '<p style="padding:32px 28px;font-family:var(--f-mono);font-size:13px;color:var(--steel);">Žádné plánované akce.</p>'; return; }
+
+    data.sort((a,b) => new Date(a[0]) - new Date(b[0]));
+    let monthCounts = {};
+    data.forEach(r => { const m = new Date(r[0]).getMonth(); monthCounts[m] = (monthCounts[m]||0)+1; });
+
+    let html = '', curM = -1;
+    data.forEach(row => {
+      const d = new Date(row[0]), m = d.getMonth(), den = d.getDate();
+      const zkr = MONTHS[m].substring(0,3).toUpperCase();
+      const isH = row[3]==='ano'||row[3]===true;
+      const type = (row[2]||'').toLowerCase();
+      const cls = isH ? 'is-highlight' : (type==='sraz' ? 'is-sraz' : '');
+
+      if (m !== curM) {
+        if (curM !== -1) html += '</div></div>';
+        curM = m;
+        html += `<div class="month-block reveal"><div class="month-hdr">
+          <div class="month-hdr-num">${String(m+1).padStart(2,'0')}</div>
+          <div class="month-hdr-name">${MONTHS[m]}</div>
+          <div class="month-hdr-count">${monthCounts[m]} ${monthCounts[m]===1?'akce':'akcí'}</div>
+        </div><div class="event-list">`;
       }
 
-      const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"];
-      let html = '';
-      let currentMonth = -1;
-
-      data.sort((a, b) => new Date(a[0]) - new Date(b[0]));
-
-      data.forEach(row => {
-        const d = new Date(row[0]);
-        const m = d.getMonth();
-        const den = d.getDate();
-        const zkratkaMesice = months[m].substring(0, 4).toUpperCase();
-        
-        if (m !== currentMonth) {
-          if (currentMonth !== -1) html += '</div></div>';
-          currentMonth = m;
-          html += `<div class="month-group reveal">
-                    <div class="month-label">${months[m]}</div>
-                    <div class="event-list">`;
-        }
-
-        const isHighlight = row[3] === 'ano' || row[3] === true;
-        const typeClass = `badge-${row[2].toLowerCase()}`;
-        const itemClass = isHighlight ? 'highlight' : (row[2].toLowerCase() === 'sraz' ? 'sraz' : '');
-
-        html += `
-          <div class="event-item ${itemClass}">
-            <div class="event-date">${den}.<br>${zkratkaMesice}</div>
-            <div class="event-body">
-              <span class="event-badge ${typeClass}">${row[2]}</span>
-              <div class="event-title">${row[1]}</div>
-            </div>
-          </div>`;
-      });
-
-      html += '</div></div>';
-      container.innerHTML = html;
-      initReveals();
-    } catch (e) {
-      container.innerHTML = '<p>Chyba při načítání dat z tabulky.</p>';
-    }
-  }
-
-  function checkAdmin() {
-      if (document.getElementById('adminPass').value === 'trabant1990') {
-          document.getElementById('adminLogin').style.display = 'none';
-          document.getElementById('adminForm').style.display = 'block';
-      } else {
-          alert('Špatné heslo');
-      }
-  }
-
-  document.getElementById('adminForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    btn.innerText = 'Odesílám...';
-    
-    const payload = {
-      date: document.getElementById('eventDate').value,
-      title: document.getElementById('eventTitle').value,
-      type: document.getElementById('eventType').value,
-      highlight: document.getElementById('eventHighlight').checked ? 'ano' : 'ne'
-    };
-
-    try {
-      await fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-      });
-      alert('Akce přidána do Google tabulky!');
-      location.reload();
-    } catch (err) {
-      alert('Chyba při odesílání.');
-    }
-  });
-
-  let clickCount = 0;
-  document.getElementById('adminTrigger').onclick = () => {
-      clickCount++;
-      if (clickCount === 3) {
-          document.getElementById('adminModal').style.display = 'flex';
-          clickCount = 0;
-      }
-  };
-
-  function openMenu() {
-    document.getElementById('mobileMenu').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  const scrollBtn = document.getElementById('scrollTop');
-  window.addEventListener('scroll', () => {
-    scrollBtn.classList.toggle('visible', window.scrollY > 400);
-  });
-
-  function initReveals() {
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          e.target.style.transitionDelay = (i % 4) * 0.1 + 's';
-          e.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-  }
-
-  const sections = document.querySelectorAll('section[id], div[id]');
-  const navLinks = document.querySelectorAll('nav a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      html += `<div class="ev ${cls}">
+        <div class="ev-date">${den}.<small>${zkr}</small></div>
+        <div class="ev-name">${row[1]}</div>
+        <span class="ev-badge badge-${type}">${row[2]}</span>
+      </div>`;
     });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
-  });
+    html += '</div></div>';
+    c.innerHTML = html;
+    initReveal();
+  } catch(e) {
+    document.getElementById('calendar-container').innerHTML = '<p style="padding:32px 28px;font-family:var(--f-mono);font-size:13px;color:var(--steel);">Chyba při načítání. Zkuste obnovit stránku.</p>';
+  }
+}
 
-  window.onload = () => {
-      loadCalendar();
-      initReveals();
-  };
+// Admin
+let clicks = 0;
+document.getElementById('adminTrigger').onclick = () => { if(++clicks===3){document.getElementById('adminModal').style.display='flex';clicks=0;} };
+function checkAdmin() {
+  if(document.getElementById('adminPass').value==='trabant1990'){document.getElementById('adminLogin').style.display='none';document.getElementById('adminForm').style.display='block';}
+  else alert('Špatné heslo');
+}
+document.getElementById('adminForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = 'Odesílám...';
+  try {
+    await fetch(SHEET_URL,{method:'POST',body:JSON.stringify({date:document.getElementById('eventDate').value,title:document.getElementById('eventTitle').value,type:document.getElementById('eventType').value,highlight:document.getElementById('eventHighlight').checked?'ano':'ne'})});
+    alert('Akce přidána!'); location.reload();
+  } catch { alert('Chyba při odesílání.'); btn.textContent='Přidat do tabulky'; }
+});
+
+// Reveal
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),(i%5)*70);obs.unobserve(e.target);} });
+  },{threshold:0.06});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => obs.observe(el));
+}
+
+window.addEventListener('DOMContentLoaded', () => { loadCalendar(); initReveal(); });
 </script>
 </body>
 </html>
