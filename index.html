@@ -622,6 +622,12 @@
         }
         .event-item:hover { border-color: var(--accent); transform: translateX(8px); }
         
+        /* Highlightovaná akce z tabulky */
+        .event-item.highlighted {
+            border: 1px solid #e8a020;
+            box-shadow: 0 0 15px rgba(232, 160, 32, 0.15);
+        }
+
         /* Zrušená akce */
         .event-item.cancelled {
             opacity: 0.4;
@@ -843,7 +849,7 @@
         <div class="admin-content">
             <button class="admin-close" onclick="closeAdmin()">×</button>
             <h2 class="admin-title">Správa akcí (Admin)</h2>
-            <p style="color: var(--text-dim); margin-bottom: 24px;">Zde můžete označit akce jako zrušené (zešednou v kalendáři a nebudou se ukazovat v odpočtu). Aby se změna propsala natrvalo, musí mít váš Google Script nastavenou funkci doPost.</p>
+            <p style="color: var(--text-dim); margin-bottom: 24px;">Zde můžete označit akce jako zrušené (zešednou v kalendáři a nebudou se ukazovat v odpočtu).</p>
             <div id="admin-events-list">Načítám události...</div>
         </div>
     </div>
@@ -1068,7 +1074,7 @@
                     <div class="mechanic-card">
                         <div class="mech-icon">🎖️</div>
                         <div class="mech-info">
-                            <h5>Jiří Vachtl</h5>
+                            <h5>Jaroslav Vachtl</h5>
                             <p><strong>Předseda klubu</strong> · Náhradní díly · Renovace · Servisní informace</p>
                             <a href="tel:+420601355887">📞 601 355 887</a>
                         </div>
@@ -1077,13 +1083,11 @@
                     <div class="mechanic-card">
                         <div class="mech-icon">🔧</div>
                         <div class="mech-info">
-                            <h5>Pavel Fryček</h5>
-                            <p>Externí dílna: Kostelec u Nadryb</em></p>
+                            <h5>Jaroslav Fryček</h5>
+                            <p>Náhradní díly · Dílna klubu · Servisní informace<br><em>Externí dílna: Kostelec u Nadryb</em></p>
                             <a href="tel:+420792303927">📞 792 303 927</a>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
         </div>
@@ -1172,36 +1176,27 @@
         let events = [];
         const monthNames = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"];
 
-        // --- NAČTENÍ DAT Z GOOGLE TABULEK ---
+        // --- NAČTENÍ DAT Z GOOGLE TABULEK (Robustní mapování) ---
         async function loadEventsFromGoogle() {
             try {
                 const response = await fetch(GOOGLE_SCRIPT_URL);
                 const data = await response.json();
                 
                 events = data.map((row, index) => {
-                    // Funkce pro bezpečné vyhledání sloupce i když bude mít jinak velká písmena
                     const getVal = (key) => {
                         const foundKey = Object.keys(row).find(k => k.toLowerCase().trim() === key.toLowerCase().trim());
                         return foundKey ? row[foundKey] : '';
                     };
 
                     const datum = getVal('Datum');
-                    const nazev = getVal('Název') || getVal('nazev') || getVal('name');
-                    let typRaw = getVal('Typ') || '';
-                    const zrusenoRaw = getVal('zrušeno') || getVal('zruseno') || 'ne';
+                    const nazev = getVal('Název');
+                    const typRaw = getVal('Typ').toString().toLowerCase();
+                    const zrusenoRaw = getVal('Zrušeno').toString().toLowerCase().trim();
+                    const highlightRaw = getVal('Highlight').toString().toLowerCase().trim();
                     
-                    let isCancelled = zrusenoRaw.toString().toLowerCase().trim() === 'ano';
-                    
-                    // Rozpoznání typu pro vizuál
-                    let type = 'sraz';
-                    let typeLabel = '🏁 Sraz / Akce';
-                    let searchTyp = typRaw.toLowerCase();
-                    
-                    if (searchTyp.includes('schůz') || searchTyp.includes('schuz')) { 
-                        type = 'schuze'; typeLabel = '📋 Členská schůze'; 
-                    } else if (searchTyp.includes('výlet') || searchTyp.includes('vylet')) { 
-                        type = 'vylet'; typeLabel = '🗺️ Výlet'; 
-                    }
+                    let type = 'sraz', typeLabel = '🏁 Sraz / Akce';
+                    if (typRaw.includes('schůz') || typRaw.includes('schuz')) { type = 'schuze'; typeLabel = '📋 Členská schůze'; }
+                    else if (typRaw.includes('výlet') || typRaw.includes('vylet')) { type = 'vylet'; typeLabel = '🗺️ Výlet'; }
 
                     return {
                         id: index,
@@ -1209,25 +1204,16 @@
                         name: nazev,
                         type: type,
                         typeLabel: typeLabel,
-                        status: isCancelled ? 'cancelled' : 'active',
-                        highlight: getVal('Highlight'),
-                        originalRowIndex: index + 2 // pokud je první řádek hlavička
+                        status: zrusenoRaw === 'ano' ? 'cancelled' : 'active',
+                        isHighlighted: highlightRaw === 'ano',
+                        row: index + 2
                     };
-                });
+                }).filter(e => e.date && e.name);
 
-                // Vyfiltrujeme prázdné řádky, kde chybí datum nebo jméno
-                events = events.filter(e => e.date && e.name);
-
-                if (events.length > 0) {
-                    renderCalendar();
-                    updateNextEvent();
-                } else {
-                    document.getElementById('calendar-container').innerHTML = '<p style="text-align:center; padding: 40px; color: var(--text-dim); font-family: var(--font-mono);">Zatím nejsou naplánovány žádné akce.</p>';
-                }
-
+                renderCalendar();
+                updateNextEvent();
             } catch (error) {
-                console.error("Chyba při načítání dat z Google:", error);
-                document.getElementById('calendar-container').innerHTML = '<p style="text-align:center; padding: 40px; color: var(--accent); font-family: var(--font-mono);">Nepodařilo se spojit s Google Tabulkou. Zkuste obnovit stránku.</p>';
+                document.getElementById('calendar-container').innerHTML = 'Chyba připojení k tabulce.';
             }
         }
 
@@ -1235,23 +1221,16 @@
         function renderCalendar() {
             const container = document.getElementById('calendar-container');
             container.innerHTML = '';
-
-            // Seřadit podle data
             events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-            // Seskupit podle Roku a Měsíce
             const grouped = {};
             events.forEach(ev => {
-                const d = new Date(ev.date);
-                const year = d.getFullYear();
-                const month = monthNames[d.getMonth()];
-                
+                const d = new Date(ev.date), year = d.getFullYear(), month = monthNames[d.getMonth()];
                 if(!grouped[year]) grouped[year] = {};
                 if(!grouped[year][month]) grouped[year][month] = [];
                 grouped[year][month].push(ev);
             });
 
-            // Vygenerovat HTML
             for(const year in grouped) {
                 const yearDiv = document.createElement('div');
                 yearDiv.className = 'year-group';
@@ -1260,32 +1239,20 @@
                 for(const month in grouped[year]) {
                     const monthDiv = document.createElement('div');
                     monthDiv.className = 'month-group';
-                    monthDiv.innerHTML = `<div class="month-title">${month}</div>`;
-                    
-                    const listDiv = document.createElement('div');
-                    listDiv.className = 'event-list';
+                    monthDiv.innerHTML = `<div class="month-title">${month}</div><div class="event-list"></div>`;
+                    const list = monthDiv.querySelector('.event-list');
 
                     grouped[year][month].forEach(ev => {
-                        const d = new Date(ev.date);
-                        const day = String(d.getDate()).padStart(2, '0');
-                        const isCancelled = ev.status === 'cancelled';
-                        const cancelledStamp = isCancelled ? '<div class="cancelled-stamp">Zrušeno</div>' : '';
-
-                        listDiv.innerHTML += `
-                            <div class="event-item type-${ev.type} ${isCancelled ? 'cancelled' : ''}">
-                                <div class="event-date-box">
-                                    <div class="event-day">${day}</div>
-                                    <div class="event-month-short">${month.substring(0,3)}</div>
-                                </div>
-                                <div class="event-info">
-                                    <div class="event-type">${ev.typeLabel}</div>
-                                    <div class="event-name">${ev.name}</div>
-                                </div>
-                                ${cancelledStamp}
-                            </div>
-                        `;
+                        const d = new Date(ev.date), day = String(d.getDate()).padStart(2, '0');
+                        const isC = ev.status === 'cancelled';
+                        const isH = ev.isHighlighted ? 'highlighted' : '';
+                        list.innerHTML += `
+                            <div class="event-item type-${ev.type} ${isC?'cancelled':''} ${isH}">
+                                <div class="event-date-box"><div class="event-day">${day}</div><div class="event-month-short">${month.substring(0,3)}</div></div>
+                                <div class="event-info"><div class="event-type">${ev.typeLabel}</div><div class="event-name">${ev.name}</div></div>
+                                ${isC?'<div class="cancelled-stamp">Zrušeno</div>':''}
+                            </div>`;
                     });
-                    monthDiv.appendChild(listDiv);
                     yearDiv.appendChild(monthDiv);
                 }
                 container.appendChild(yearDiv);
@@ -1294,62 +1261,25 @@
 
         // --- ODPOČET (LIDSKÝ FORMÁT) ---
         function updateNextEvent() {
-            const banner = document.getElementById('next-event-banner');
-            const timeEl = document.getElementById('cd-time');
-            const nameEl = document.getElementById('cd-event-name');
-
-            // Dnešní datum s časem 00:00 pro správný výpočet dní
-            const today = new Date();
-            today.setHours(0,0,0,0);
-
-            // Najít nejbližší událost, která není zrušená a není v minulosti
-            const futureEvents = events.filter(ev => {
-                if(ev.status === 'cancelled') return false;
-                const evDate = new Date(ev.date);
-                evDate.setHours(0,0,0,0);
-                return evDate >= today;
-            });
-
-            futureEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-            if(futureEvents.length > 0) {
-                const nextEv = futureEvents[0];
-                const evDate = new Date(nextEv.date);
-                evDate.setHours(0,0,0,0);
-                
-                const diffTime = evDate - today;
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                
-                let timeString = '';
-                if(diffDays === 0) timeString = 'Dnes!';
-                else if(diffDays === 1) timeString = 'Zítra';
-                else if(diffDays === 2) timeString = 'Pozítří';
-                else if(diffDays > 2 && diffDays < 5) timeString = `Za ${diffDays} dny`;
-                else timeString = `Za ${diffDays} dní`;
-
-                timeEl.textContent = timeString;
-                nameEl.textContent = nextEv.name;
-                banner.style.display = 'inline-flex';
-            } else {
-                banner.style.display = 'none';
+            const today = new Date(); today.setHours(0,0,0,0);
+            const future = events.filter(e => e.status !== 'cancelled' && new Date(e.date) >= today).sort((a,b) => new Date(a.date) - new Date(b.date));
+            
+            if(future.length > 0) {
+                const ev = future[0], d = new Date(ev.date);
+                const diff = Math.ceil((d - today)/(1000*60*60*24));
+                let txt = diff===0?'Dnes!':diff===1?'Zítra':diff===2?'Pozítří':diff<5?`Za ${diff} dny`:`Za ${diff} dní`;
+                document.getElementById('cd-time').textContent = txt;
+                document.getElementById('cd-event-name').textContent = ev.name;
+                document.getElementById('next-event-banner').style.display = 'inline-flex';
             }
         }
 
-        // --- TAJNÝ ADMIN PŘES LOGO ---
-        let logoClicks = 0;
-        let logoClickTimer;
-        
-        document.getElementById('logo-trigger').addEventListener('click', (e) => {
-            e.preventDefault();
-            logoClicks++;
-            clearTimeout(logoClickTimer);
-            
-            if(logoClicks >= 3) {
-                openAdmin();
-                logoClicks = 0;
-            } else {
-                logoClickTimer = setTimeout(() => { logoClicks = 0; }, 600);
-            }
+        // --- TAJNÝ ADMIN ---
+        let logoClicks = 0, logoTimer;
+        document.getElementById('logo-trigger').addEventListener('click', () => {
+            logoClicks++; clearTimeout(logoTimer);
+            if(logoClicks >= 3) { openAdmin(); logoClicks = 0; }
+            else logoTimer = setTimeout(() => logoClicks = 0, 600);
         });
 
         function openAdmin() {
@@ -1361,66 +1291,25 @@
             document.getElementById('adminModal').style.display = 'none';
         }
 
-        // Odeslání změny do Googlu
         async function toggleEventStatus(id) {
-            const ev = events.find(e => e.id === id);
-            if(ev) {
-                const newStatusGoogle = (ev.status === 'cancelled') ? 'ne' : 'ano';
-                
-                // Aktualizace na webu okamžitě pro rychlou odezvu
-                ev.status = (ev.status === 'cancelled') ? 'active' : 'cancelled';
-                renderAdminList();
-                renderCalendar();
-                updateNextEvent();
-
-                // Pokus o odeslání do Google Scriptu
-                try {
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            action: 'updateCancel',
-                            row: ev.originalRowIndex,
-                            zruseno: newStatusGoogle
-                        })
-                    });
-                } catch (e) {
-                    console.error("Nepodařilo se uložit změnu na Google:", e);
-                }
-            }
+            const ev = events.find(e => e.id == id);
+            const newSt = ev.status === 'cancelled' ? 'ne' : 'ano';
+            ev.status = ev.status === 'cancelled' ? 'active' : 'cancelled';
+            renderAdminList(); renderCalendar(); updateNextEvent();
+            fetch(GOOGLE_SCRIPT_URL, { method:'POST', mode:'no-cors', body: JSON.stringify({action:'updateCancel', row: ev.row, zruseno: newSt}) });
         }
 
         function renderAdminList() {
             const list = document.getElementById('admin-events-list');
-            list.innerHTML = '';
-            
-            const sorted = [...events].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            sorted.forEach(ev => {
-                const isCancelled = ev.status === 'cancelled';
-                const d = new Date(ev.date);
-                const dateStr = `${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
-                
-                list.innerHTML += `
-                    <div class="admin-item ${isCancelled ? 'is-cancelled' : ''}">
-                        <div class="admin-item-info">
-                            <strong>${dateStr}</strong> — ${ev.name} 
-                            <span style="font-size: 0.8em; color: var(--text-dim); margin-left:10px;">${isCancelled ? '(ZRUŠENO)' : ''}</span>
-                        </div>
-                        <button class="admin-btn ${isCancelled ? 'restore-btn' : 'cancel-btn'}" onclick="toggleEventStatus(${ev.id})">
-                            ${isCancelled ? 'Obnovit akci' : 'Zrušit akci'}
-                        </button>
-                    </div>
-                `;
-            });
+            list.innerHTML = events.map(ev => `
+                <div class="admin-item" style="${ev.status==='cancelled'?'opacity:0.5':''}">
+                    <div class="admin-item-info"><strong>${new Date(ev.date).toLocaleDateString()}</strong> — ${ev.name}</div>
+                    <button class="admin-btn" onclick="toggleEventStatus(${ev.id})">${ev.status==='cancelled'?'Obnovit':'Zrušit'}</button>
+                </div>
+            `).join('');
         }
 
-        // --- INICIALIZACE PO NAČTENÍ STRÁNKY ---
-        document.addEventListener("DOMContentLoaded", function() {
-            loadEventsFromGoogle();
-        });
-
+        document.addEventListener("DOMContentLoaded", loadEventsFromGoogle);
     </script>
 </body>
 </html>
