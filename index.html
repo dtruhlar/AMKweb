@@ -166,6 +166,7 @@
             gap: 14px;
             cursor: pointer;
             text-decoration: none;
+            user-select: none;
         }
         .logo-icon {
             font-size: 28px;
@@ -291,7 +292,7 @@
         }
         .mobile-nav a:hover { color: var(--accent); }
 
-        /* ===== HERO ===== */
+        /* ===== HERO & COUNTDOWN ===== */
         #hero {
             min-height: 100vh;
             display: grid;
@@ -326,6 +327,38 @@
             content: ''; width: 32px; height: 1px; background: var(--accent);
         }
 
+        /* Nový banner pro odpočet */
+        .countdown-banner {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeUp 0.8s 1.7s var(--ease-out) forwards;
+            border-left: 3px solid var(--accent);
+        }
+        .cd-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-dim);
+        }
+        .cd-time {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .cd-event {
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
         .hero-h1 {
             font-family: var(--font-display);
             font-size: clamp(3.2rem, 5.5vw, 6.5rem);
@@ -334,7 +367,7 @@
             color: var(--text);
             margin-bottom: 32px;
             opacity: 0;
-            animation: fadeUp 0.9s 1.75s var(--ease-out) forwards;
+            animation: fadeUp 0.9s 1.8s var(--ease-out) forwards;
             text-transform: uppercase;
         }
         .hero-h1 em {
@@ -350,7 +383,7 @@
             margin-bottom: 48px;
             font-weight: 300;
             opacity: 0;
-            animation: fadeUp 0.9s 1.9s var(--ease-out) forwards;
+            animation: fadeUp 0.9s 1.95s var(--ease-out) forwards;
         }
 
         .hero-actions {
@@ -358,7 +391,7 @@
             gap: 20px;
             align-items: center;
             opacity: 0;
-            animation: fadeUp 0.9s 2.05s var(--ease-out) forwards;
+            animation: fadeUp 0.9s 2.1s var(--ease-out) forwards;
         }
 
         .btn-ghost {
@@ -555,10 +588,27 @@
             padding: 6px 14px;
             border: 1px solid var(--border);
         }
-        .event-badge.sraz { border-color: var(--accent); color: var(--accent); }
-        .event-badge.schuze { color: var(--text-mid); }
-        .event-badge.vylet { color: var(--text-mid); }
         
+        /* Stylování dynamického kalendáře */
+        .year-group { margin-bottom: 60px; }
+        .year-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+        .month-group { margin-bottom: 32px; }
+        .month-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding-left: 16px;
+        }
         .event-list { display: flex; flex-direction: column; gap: 16px; }
         .event-item {
             background: var(--bg);
@@ -568,8 +618,32 @@
             align-items: center;
             gap: 32px;
             transition: all 0.3s;
+            position: relative;
         }
         .event-item:hover { border-color: var(--accent); transform: translateX(8px); }
+        
+        /* Zrušená akce */
+        .event-item.cancelled {
+            opacity: 0.4;
+            filter: grayscale(1);
+        }
+        .event-item.cancelled:hover { transform: none; border-color: var(--border); cursor: not-allowed; }
+        .cancelled-stamp {
+            position: absolute;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-5deg);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 4px 12px;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
         .event-date-box {
             background: var(--surface2);
             border: 1px solid var(--border);
@@ -578,12 +652,15 @@
             min-width: 100px;
         }
         .event-day { font-family: var(--font-display); font-size: 2.2rem; color: var(--text); line-height: 1; }
-        .event-item.sraz .event-day { color: var(--accent); }
-        .event-month { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; color: var(--text-dim); margin-top: 8px; letter-spacing: 0.1em; }
+        .event-month-short { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; color: var(--text-dim); margin-top: 8px; letter-spacing: 0.1em; }
         .event-info { flex: 1; }
         .event-type { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-mid); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px; }
-        .event-item.sraz .event-type { color: var(--accent); }
         .event-name { font-family: var(--font-display); font-size: 1.8rem; color: var(--text); line-height: 1.2; }
+        
+        /* Barvy typu */
+        .type-sraz .event-type, .type-sraz .event-day { color: var(--accent); }
+        .type-schuze .event-type, .type-schuze .event-day { color: #e8a020; } /* Trabi žlutá */
+        .type-vylet .event-type, .type-vylet .event-day { color: #5a9e5a; } /* Trabi zelená */
 
         /* ===== O NÁS ===== */
         .about-grid {
@@ -700,6 +777,27 @@
             letter-spacing: 0.15em;
         }
 
+        /* ===== ADMIN MODAL ===== */
+        #adminModal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10000;
+            display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px);
+        }
+        .admin-content {
+            background: var(--bg2); border: 1px solid var(--accent); padding: 40px; width: 90%; max-width: 700px;
+            max-height: 80vh; overflow-y: auto; position: relative;
+        }
+        .admin-close {
+            position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text);
+            font-size: 24px; cursor: pointer;
+        }
+        .admin-title { font-family: var(--font-display); font-size: 2.5rem; color: var(--accent); margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+        .admin-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .admin-item.is-cancelled { opacity: 0.5; }
+        .admin-item-info { flex: 1; }
+        .admin-btn { padding: 8px 16px; background: var(--surface2); color: var(--text); border: 1px solid var(--border); cursor: pointer; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; }
+        .admin-btn.cancel-btn { color: var(--accent); border-color: var(--accent); }
+        .admin-btn.restore-btn { color: #9DC52A; border-color: #9DC52A; }
+
         /* ===== ANIMATIONS & UTILS ===== */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -721,11 +819,13 @@
             nav, .theme-btn { display: none; }
             .hamburger { display: flex; }
             .hero-left { padding: 120px 32px 64px; }
+            .countdown-banner { flex-direction: column; align-items: flex-start; gap: 8px; }
             .section-title { font-size: 2.2rem; }
             .zpravodaj-cta { padding: 32px; }
             .zpravodaj-form { flex-direction: column; }
             .footer-flex { flex-direction: column; align-items: flex-start; gap: 32px; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+            .cancelled-stamp { font-size: 1rem; right: 10px; }
         }
     </style>
 </head>
@@ -739,14 +839,23 @@
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursor-ring"></div>
 
+    <div id="adminModal">
+        <div class="admin-content">
+            <button class="admin-close" onclick="closeAdmin()">×</button>
+            <h2 class="admin-title">Správa akcí (Admin)</h2>
+            <p style="color: var(--text-dim); margin-bottom: 24px;">Zde můžete označit akce jako zrušené (zešednou v kalendáři a nebudou se ukazovat v odpočtu). Aby se změna propsala natrvalo, musí mít váš Google Script nastavenou funkci doPost.</p>
+            <div id="admin-events-list">Načítám události...</div>
+        </div>
+    </div>
+
     <header id="header">
-        <a href="#" class="logo-wrap">
+        <div class="logo-wrap" id="logo-trigger">
             <div class="logo-icon">🚗</div>
             <div class="logo-text">
                 <span class="logo-name">Trabant klub</span>
                 <span class="logo-sub">Plzeň · od 1990</span>
             </div>
-        </a>
+        </div>
         <nav>
             <a href="#aktuality">Aktuality</a>
             <a href="#akce">Akce a výlety</a>
@@ -772,6 +881,13 @@
     <section id="hero">
         <div class="hero-left">
             <div class="hero-eyebrow">🏁 Trabantklub Plzeň z.s.</div>
+            
+            <div class="countdown-banner" id="next-event-banner" style="display: none;">
+                <div class="cd-label">Nejbližší akce:</div>
+                <div class="cd-time" id="cd-time">Načítám...</div>
+                <div class="cd-event" id="cd-event-name"></div>
+            </div>
+
             <h1 class="hero-h1">Prdíme<br><em>společně</em><br>od r. 1990</h1>
             <p class="hero-desc">Jsme spolek nadšenců do trabantů z Plzně a okolí. Pravidelné srazy, výlety, opravna, kamarádství — to jsme my.</p>
             <div class="hero-actions">
@@ -797,10 +913,10 @@
     <div class="hours-banner" id="oteviraci-doba">
         <div class="hours-label">🏢 Kancelář & prodejna náhradních dílů</div>
         <div class="hours-grid">
-            <div class="hours-item">ÚT <span>13–18</span></div>
-            <div class="hours-item">ST <span>9–12 · 13–18</span></div>
-            <div class="hours-item">ČT <span>9–13</span></div>
-            <div class="hours-item" style="opacity:0.6; border-color: transparent;">PO, PÁ-NE <span>zavřeno</span></div>
+            <div class="hours-item">ÚT <span>13:00 – 18:00</span></div>
+            <div class="hours-item">ST <span>09:00 – 12:00 · 13:00 – 18:00</span></div>
+            <div class="hours-item">ČT <span>09:00 – 13:00</span></div>
+            <div class="hours-item" style="opacity:0.6; border-color: transparent;">PO, PÁ-NE <span>ZAVŘENO</span></div>
         </div>
     </div>
 
@@ -853,18 +969,18 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-num">02 /</h2>
-                <h3 class="section-title">Kalendář akcí 2026</h3>
-                <p class="section-subtitle">Přehled plánovaných srazů, členských schůzí a výletů.</p>
+                <h3 class="section-title">Kalendář akcí</h3>
+                <p class="section-subtitle">Přehled plánovaných srazů, členských schůzí a výletů na tento i další roky.</p>
             </div>
 
             <div class="event-badges reveal">
-                <span class="event-badge sraz">🏁 Sraz / akce</span>
-                <span class="event-badge schuze">📋 Členská schůze</span>
-                <span class="event-badge vylet">🗺️ Výlet</span>
+                <span class="event-badge" style="color: var(--accent); border-color: var(--accent);">🏁 Sraz / akce</span>
+                <span class="event-badge" style="color: #e8a020; border-color: #e8a020;">📋 Členská schůze</span>
+                <span class="event-badge" style="color: #5a9e5a; border-color: #5a9e5a;">🗺️ Výlet</span>
             </div>
 
             <div id="calendar-container" class="reveal">
-                <p style="text-align:center; padding: 40px; color: var(--text-dim); font-family: var(--font-mono);">Načítám aktuální akce...</p>
+                <p style="text-align:center; padding: 40px; color: var(--text-dim); font-family: var(--font-mono);">Stahuji data z Google Tabulek...</p>
             </div>
         </div>
     </section>
@@ -923,15 +1039,19 @@
         <div class="container">
             <div class="section-header reveal">
                 <h2 class="section-num">04 /</h2>
-                <h3 class="section-title">Kontakt & Servis</h3>
-                <p class="section-subtitle">Kde nás najdete a kdo vám pomůže s opravou.</p>
+                <h3 class="section-title">Kontakty & Servis</h3>
+                <p class="section-subtitle">Kde nás najdete a kdo vám pomůže s vaší technikou.</p>
             </div>
 
             <div class="contact-grid">
                 <div class="reveal">
                     <div class="contact-block">
-                        <h4>Adresa</h4>
+                        <h4>Sídlo klubu a prodejna</h4>
                         <p>AMK Trabant Plzeň z.s.<br>Úslavská 339/2<br>326 00 Plzeň</p>
+                    </div>
+                    <div class="contact-block">
+                        <h4>Dílna klubu</h4>
+                        <p>Úslavská 2<br>326 00 Plzeň</p>
                     </div>
                     <div class="contact-block">
                         <h4>Spojení</h4>
@@ -940,43 +1060,44 @@
                             <a href="mailto:info@trabant-plzen.cz">info@trabant-plzen.cz</a>
                         </p>
                     </div>
-                    <div class="contact-block">
-                        <h4>Otevírací doba</h4>
-                        <p style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.8;">
-                            <span style="color: var(--accent);">Úterý:</span> 13:00 – 18:00<br>
-                            <span style="color: var(--accent);">Středa:</span> 9:00 – 12:00, 13:00 – 18:00<br>
-                            <span style="color: var(--accent);">Čtvrtek:</span> 9:00 – 13:00<br>
-                            <span style="color: var(--text-dim);">Pondělí, Pá-Ne: zavřeno</span>
-                        </p>
-                    </div>
                 </div>
 
                 <div class="mechanics-list reveal">
-                    <h4 style="font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 16px; font-weight: 400;">Mechanici</h4>
+                    <h4 style="font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 16px; font-weight: 400;">Kluboví specialisté</h4>
                     
+                    <div class="mechanic-card">
+                        <div class="mech-icon">🎖️</div>
+                        <div class="mech-info">
+                            <h5>Jaroslav Vachtl</h5>
+                            <p><strong>Předseda klubu</strong> · Náhradní díly · Renovace · Servisní informace</p>
+                            <a href="tel:+420601355887">📞 601 355 887</a>
+                        </div>
+                    </div>
+
                     <div class="mechanic-card">
                         <div class="mech-icon">🔧</div>
                         <div class="mech-info">
-                            <h5>Pan Vachtl</h5>
-                            <p>Servisní poradenství a informace k opravám dvoutaktů.</p>
-                            <a href="tel:+420601355887">📞 601 355 887</a>
+                            <h5>Jaroslav Fryček</h5>
+                            <p>Náhradní díly · Dílna klubu · Servisní informace<br><em>Externí dílna: Kostelec u Nadryb</em></p>
+                            <a href="tel:+420792303927">📞 792 303 927</a>
+                        </div>
+                    </div>
+
+                    <div class="mechanic-card">
+                        <div class="mech-icon">🚜</div>
+                        <div class="mech-info">
+                            <h5>Miroslav Šlehofer</h5>
+                            <p>Dílna klubu · Půjčovna vozíků · Servisní informace</p>
+                            <a href="tel:+420603551143">📞 603 551 143</a>
                         </div>
                     </div>
 
                     <div class="mechanic-card">
                         <div class="mech-icon">🏗️</div>
                         <div class="mech-info">
-                            <h5>Pan Fryček</h5>
-                            <p>Dílna trabantklubu — Úslavská 2, Plzeň.</p>
-                            <a href="tel:+420792303927">📞 792 303 927</a>
-                        </div>
-                    </div>
-
-                    <div class="mechanic-card" style="background: var(--surface);">
-                        <div class="mech-icon">🚗</div>
-                        <div class="mech-info">
-                            <h5>Dílna Kostelec</h5>
-                            <p>Opravy v Kostelci u Nadryb s možností vyzvednutí vozidla přímo v Plzni po předchozí domluvě.</p>
+                            <h5>Jaroslav Vachtl ml.</h5>
+                            <p>Dílna klubu · Odtahová služba · Renovace · Náhradní díly</p>
+                            <a href="tel:+420722055354">📞 722 055 354</a>
                         </div>
                     </div>
                 </div>
@@ -991,7 +1112,7 @@
         </div>
         <div class="footer-bottom">
             <div>&copy; 2026 AMK Trabant Plzeň z.s. Všechna práva vyhrazena.</div>
-            <div>Od nadšenců pro nadšence</div>
+            <div>Brutální dvoutaktní síla z Plzně</div>
         </div>
     </footer>
 
@@ -1034,85 +1155,288 @@
         // ===== THEME TOGGLE =====
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.documentElement;
-        
         themeToggle.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-            }
+            if (body.getAttribute('data-theme') === 'dark') body.setAttribute('data-theme', 'light');
+            else body.setAttribute('data-theme', 'dark');
         });
 
         // ===== MOBILE MENU =====
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
-        const mobileLinks = mobileNav.querySelectorAll('a');
-
         function toggleMenu() {
             hamburger.classList.toggle('open');
             mobileNav.classList.toggle('open');
             document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
         }
-
         hamburger.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
+        mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMenu));
 
         // ===== SCROLL REVEAL =====
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // ===== NAČÍTÁNÍ KALENDÁŘE =====
-        document.addEventListener("DOMContentLoaded", function() {
+
+        // =====================================================================
+        // ===== LOGIKA PRO GOOGLE TABULKU, KALENDÁŘ A ADMIN ===================
+        // =====================================================================
+
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyhX3pHDz2zt_RLG4HjjDDQorSga0x-GfP-ibMDMYlmNmxNmYBFzE0V5lHSXPLoohQLHQ/exec";
+        let events = [];
+        const monthNames = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"];
+
+        // --- NAČTENÍ DAT Z GOOGLE TABULEK ---
+        async function loadEventsFromGoogle() {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL);
+                const data = await response.json();
+                
+                events = data.map((row, index) => {
+                    // Funkce pro bezpečné vyhledání sloupce i když bude mít jinak velká písmena
+                    const getVal = (key) => {
+                        const foundKey = Object.keys(row).find(k => k.toLowerCase().trim() === key.toLowerCase().trim());
+                        return foundKey ? row[foundKey] : '';
+                    };
+
+                    const datum = getVal('datum');
+                    const nazev = getVal('název') || getVal('nazev') || getVal('name');
+                    let typRaw = getVal('typ') || '';
+                    const zrusenoRaw = getVal('zrušeno') || getVal('zruseno') || 'ne';
+                    
+                    let isCancelled = zrusenoRaw.toString().toLowerCase().trim() === 'ano';
+                    
+                    // Rozpoznání typu pro vizuál
+                    let type = 'sraz';
+                    let typeLabel = '🏁 Sraz / Akce';
+                    let searchTyp = typRaw.toLowerCase();
+                    
+                    if (searchTyp.includes('schůz') || searchTyp.includes('schuz')) { 
+                        type = 'schuze'; typeLabel = '📋 Členská schůze'; 
+                    } else if (searchTyp.includes('výlet') || searchTyp.includes('vylet')) { 
+                        type = 'vylet'; typeLabel = '🗺️ Výlet'; 
+                    }
+
+                    return {
+                        id: index,
+                        date: datum,
+                        name: nazev,
+                        type: type,
+                        typeLabel: typeLabel,
+                        status: isCancelled ? 'cancelled' : 'active',
+                        highlight: getVal('highlight'),
+                        originalRowIndex: index + 2 // pokud je první řádek hlavička
+                    };
+                });
+
+                // Vyfiltrujeme prázdné řádky, kde chybí datum nebo jméno
+                events = events.filter(e => e.date && e.name);
+
+                if (events.length > 0) {
+                    renderCalendar();
+                    updateNextEvent();
+                } else {
+                    document.getElementById('calendar-container').innerHTML = '<p style="text-align:center; padding: 40px; color: var(--text-dim); font-family: var(--font-mono);">Zatím nejsou naplánovány žádné akce.</p>';
+                }
+
+            } catch (error) {
+                console.error("Chyba při načítání dat z Google:", error);
+                document.getElementById('calendar-container').innerHTML = '<p style="text-align:center; padding: 40px; color: var(--accent); font-family: var(--font-mono);">Nepodařilo se spojit s Google Tabulkou. Zkuste obnovit stránku.</p>';
+            }
+        }
+
+        // --- VYKRESLENÍ KALENDÁŘE ---
+        function renderCalendar() {
             const container = document.getElementById('calendar-container');
-            if(!container) return;
+            container.innerHTML = '';
+
+            // Seřadit podle data
+            events.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            // Seskupit podle Roku a Měsíce
+            const grouped = {};
+            events.forEach(ev => {
+                const d = new Date(ev.date);
+                const year = d.getFullYear();
+                const month = monthNames[d.getMonth()];
+                
+                if(!grouped[year]) grouped[year] = {};
+                if(!grouped[year][month]) grouped[year][month] = [];
+                grouped[year][month].push(ev);
+            });
+
+            // Vygenerovat HTML
+            for(const year in grouped) {
+                const yearDiv = document.createElement('div');
+                yearDiv.className = 'year-group';
+                yearDiv.innerHTML = `<div class="year-title">${year}</div>`;
+                
+                for(const month in grouped[year]) {
+                    const monthDiv = document.createElement('div');
+                    monthDiv.className = 'month-group';
+                    monthDiv.innerHTML = `<div class="month-title">${month}</div>`;
+                    
+                    const listDiv = document.createElement('div');
+                    listDiv.className = 'event-list';
+
+                    grouped[year][month].forEach(ev => {
+                        const d = new Date(ev.date);
+                        const day = String(d.getDate()).padStart(2, '0');
+                        const isCancelled = ev.status === 'cancelled';
+                        const cancelledStamp = isCancelled ? '<div class="cancelled-stamp">Zrušeno</div>' : '';
+
+                        listDiv.innerHTML += `
+                            <div class="event-item type-${ev.type} ${isCancelled ? 'cancelled' : ''}">
+                                <div class="event-date-box">
+                                    <div class="event-day">${day}</div>
+                                    <div class="event-month-short">${month.substring(0,3)}</div>
+                                </div>
+                                <div class="event-info">
+                                    <div class="event-type">${ev.typeLabel}</div>
+                                    <div class="event-name">${ev.name}</div>
+                                </div>
+                                ${cancelledStamp}
+                            </div>
+                        `;
+                    });
+                    monthDiv.appendChild(listDiv);
+                    yearDiv.appendChild(monthDiv);
+                }
+                container.appendChild(yearDiv);
+            }
+        }
+
+        // --- ODPOČET (LIDSKÝ FORMÁT) ---
+        function updateNextEvent() {
+            const banner = document.getElementById('next-event-banner');
+            const timeEl = document.getElementById('cd-time');
+            const nameEl = document.getElementById('cd-event-name');
+
+            // Dnešní datum s časem 00:00 pro správný výpočet dní
+            const today = new Date();
+            today.setHours(0,0,0,0);
+
+            // Najít nejbližší událost, která není zrušená a není v minulosti
+            const futureEvents = events.filter(ev => {
+                if(ev.status === 'cancelled') return false;
+                const evDate = new Date(ev.date);
+                evDate.setHours(0,0,0,0);
+                return evDate >= today;
+            });
+
+            futureEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            if(futureEvents.length > 0) {
+                const nextEv = futureEvents[0];
+                const evDate = new Date(nextEv.date);
+                evDate.setHours(0,0,0,0);
+                
+                const diffTime = evDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                let timeString = '';
+                if(diffDays === 0) timeString = 'Dnes!';
+                else if(diffDays === 1) timeString = 'Zítra';
+                else if(diffDays === 2) timeString = 'Pozítří';
+                else if(diffDays > 2 && diffDays < 5) timeString = `Za ${diffDays} dny`;
+                else timeString = `Za ${diffDays} dní`;
+
+                timeEl.textContent = timeString;
+                nameEl.textContent = nextEv.name;
+                banner.style.display = 'inline-flex';
+            } else {
+                banner.style.display = 'none';
+            }
+        }
+
+        // --- TAJNÝ ADMIN PŘES LOGO ---
+        let logoClicks = 0;
+        let logoClickTimer;
+        
+        document.getElementById('logo-trigger').addEventListener('click', (e) => {
+            e.preventDefault();
+            logoClicks++;
+            clearTimeout(logoClickTimer);
             
-            // Simulační vykreslení kalendáře z Trabant struktury do PPweb designu
-            container.innerHTML = `
-                <div class="event-list">
-                    <div class="event-item sraz">
-                        <div class="event-date-box">
-                            <div class="event-day">15</div>
-                            <div class="event-month">Květen</div>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-type">🏁 Sraz / Akce</div>
-                            <div class="event-name">Velký jarní sraz Trabantů Plzeň</div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item">
-                        <div class="event-date-box">
-                            <div class="event-day">02</div>
-                            <div class="event-month">Červen</div>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-type">📋 Členská schůze</div>
-                            <div class="event-name">Pravidelné setkání klubu v klubovně</div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-item">
-                        <div class="event-date-box">
-                            <div class="event-day">24</div>
-                            <div class="event-month">Červenec</div>
-                        </div>
-                        <div class="event-info">
-                            <div class="event-type">🗺️ Výlet</div>
-                            <div class="event-name">Kolonou po hradech a zámcích</div>
-                        </div>
-                    </div>
-                </div>
-            `;
+            if(logoClicks >= 3) {
+                openAdmin();
+                logoClicks = 0;
+            } else {
+                logoClickTimer = setTimeout(() => { logoClicks = 0; }, 600);
+            }
         });
+
+        function openAdmin() {
+            document.getElementById('adminModal').style.display = 'flex';
+            renderAdminList();
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        // Odeslání změny do Googlu
+        async function toggleEventStatus(id) {
+            const ev = events.find(e => e.id === id);
+            if(ev) {
+                const newStatusGoogle = (ev.status === 'cancelled') ? 'ne' : 'ano';
+                
+                // Aktualizace na webu okamžitě pro rychlou odezvu
+                ev.status = (ev.status === 'cancelled') ? 'active' : 'cancelled';
+                renderAdminList();
+                renderCalendar();
+                updateNextEvent();
+
+                // Pokus o odeslání do Google Scriptu
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'updateCancel',
+                            row: ev.originalRowIndex,
+                            zruseno: newStatusGoogle
+                        })
+                    });
+                } catch (e) {
+                    console.error("Nepodařilo se uložit změnu na Google:", e);
+                }
+            }
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('admin-events-list');
+            list.innerHTML = '';
+            
+            const sorted = [...events].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            sorted.forEach(ev => {
+                const isCancelled = ev.status === 'cancelled';
+                const d = new Date(ev.date);
+                const dateStr = `${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
+                
+                list.innerHTML += `
+                    <div class="admin-item ${isCancelled ? 'is-cancelled' : ''}">
+                        <div class="admin-item-info">
+                            <strong>${dateStr}</strong> — ${ev.name} 
+                            <span style="font-size: 0.8em; color: var(--text-dim); margin-left:10px;">${isCancelled ? '(ZRUŠENO)' : ''}</span>
+                        </div>
+                        <button class="admin-btn ${isCancelled ? 'restore-btn' : 'cancel-btn'}" onclick="toggleEventStatus(${ev.id})">
+                            ${isCancelled ? 'Obnovit akci' : 'Zrušit akci'}
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        // --- INICIALIZACE PO NAČTENÍ STRÁNKY ---
+        document.addEventListener("DOMContentLoaded", function() {
+            loadEventsFromGoogle();
+        });
+
     </script>
 </body>
 </html>
